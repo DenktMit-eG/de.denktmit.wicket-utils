@@ -2,42 +2,42 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>de.denktmit.wicket</groupId>
-        <artifactId>dm-wicket-parent</artifactId>
-        <version>0.1.0-SNAPSHOT</version>
-        <relativePath>../_parent/pom.xml</relativePath>
-    </parent>
-    <artifactId>dm-wicket-spring</artifactId>
+  <parent>
+    <groupId>de.denktmit.wicket</groupId>
+    <artifactId>dm-wicket-parent</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+    <relativePath>../_parent/pom.xml</relativePath>
+  </parent>
+  <artifactId>dm-wicket-spring</artifactId>
 
-    <name>DenktMit :: Wicket :: Spring</name>
+  <name>DenktMit :: Wicket :: Spring</name>
 
-    <dependencies>
-        <dependency>
-            <groupId>de.denktmit.wicket</groupId>
-            <artifactId>dm-wicket-kotlin</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>de.denktmit.wicket</groupId>
-            <artifactId>dm-wicket-model</artifactId>
-        </dependency>
+  <dependencies>
+    <dependency>
+      <groupId>de.denktmit.wicket</groupId>
+      <artifactId>dm-wicket-kotlin</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>de.denktmit.wicket</groupId>
+      <artifactId>dm-wicket-model</artifactId>
+    </dependency>
 
-        <dependency>
-            <groupId>org.apache.wicket</groupId>
-            <artifactId>wicket-core</artifactId>
-        </dependency>
+    <dependency>
+      <groupId>org.apache.wicket</groupId>
+      <artifactId>wicket-core</artifactId>
+    </dependency>
 
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-        </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+    </dependency>
 
-        <dependency>
-            <groupId>jakarta.servlet</groupId>
-            <artifactId>jakarta.servlet-api</artifactId>
-        </dependency>
-    </dependencies>
+    <dependency>
+      <groupId>jakarta.servlet</groupId>
+      <artifactId>jakarta.servlet-api</artifactId>
+    </dependency>
+  </dependencies>
 
 </project>

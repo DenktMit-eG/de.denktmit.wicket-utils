@@ -13,23 +13,23 @@ import org.apache.wicket.model.IModel
  * @param init make use of `MyContainer(...) { +SomeChild }` instead of 'MyContainer container = MyContainer(...); container.add(SomeChild); ...'
  */
 open class DmContainer(
-    id: String,
-    model: IModel<*>? = null,
-    open val init: DmContainer.() -> Unit = {}
+  id: String,
+  model: IModel<*>? = null,
+  open val init: DmContainer.() -> Unit = {}
 ) : WebMarkupContainer(id, model) {
 
-    override fun onInitialize() {
-        super.onInitialize()
-        addCssClass("dm-id-$id", "dm-${classNameAsCssClass()}")
-        init()
-    }
+  override fun onInitialize() {
+    super.onInitialize()
+    addCssClass("dm-id-$id", "dm-${classNameAsCssClass()}")
+    init()
+  }
 
-    var visible: (() -> Boolean)? = null
+  var visible: (() -> Boolean)? = null
 
-    override fun onConfigure() {
-        super.onConfigure()
-        visible?.let { setVisible(it()) }
-    }
+  override fun onConfigure() {
+    super.onConfigure()
+    visible?.let { setVisible(it()) }
+  }
 
 }
 
@@ -37,5 +37,5 @@ open class DmContainer(
 /** Convenience extension to make use of `+SomeComponent(...)` instead of `add(SomeComponent(...))` */
 context (MarkupContainer)
 operator fun Component.unaryPlus() {
-    this@MarkupContainer.add(this@Component)
+  this@MarkupContainer.add(this@Component)
 }

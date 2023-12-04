@@ -10,41 +10,41 @@ import org.apache.wicket.model.IModel
 import org.apache.wicket.request.component.IRequestablePage
 
 open class DmComponent(
-    id: String,
-    model: IModel<*>? = null,
-    val init: DmComponent.() -> Unit = {}
+  id: String,
+  model: IModel<*>? = null,
+  val init: DmComponent.() -> Unit = {}
 ) : WebComponent(id, model) {
 
-    override fun onInitialize() {
-        super.onInitialize()
-        addCssClass("dm-id-$id", "dm-${classNameAsCssClass()}")
-        init()
-    }
+  override fun onInitialize() {
+    super.onInitialize()
+    addCssClass("dm-id-$id", "dm-${classNameAsCssClass()}")
+    init()
+  }
 
-    open var visible: (() -> Boolean)? = null
+  open var visible: (() -> Boolean)? = null
 
-    override fun onConfigure() {
-        super.onConfigure()
-        visible?.let { setVisible(it()) }
-    }
+  override fun onConfigure() {
+    super.onConfigure()
+    visible?.let { setVisible(it()) }
+  }
 
 }
 
 
 context (Component)
 operator fun Behavior.unaryPlus() {
-    this@Component.add(this)
+  this@Component.add(this)
 }
 
 fun Component.enableAjax() {
-    outputMarkupId = true
-    outputMarkupPlaceholderTag = true
+  outputMarkupId = true
+  outputMarkupPlaceholderTag = true
 }
 
 fun <P : PageParams> Component.setResponsePage(
-    pageClass: Class<out IRequestablePage>,
-    params: P,
-    block: (P.() -> Unit) = {}
+  pageClass: Class<out IRequestablePage>,
+  params: P,
+  block: (P.() -> Unit) = {}
 ) {
-    setResponsePage(pageClass, params.apply(block).pp)
+  setResponsePage(pageClass, params.apply(block).pp)
 }

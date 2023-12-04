@@ -7,17 +7,17 @@ import org.springframework.stereotype.Component
 @Component
 class SpringContextUtil : ApplicationContextAware {
 
-    override fun setApplicationContext(applicationContext: ApplicationContext) {
-        context = applicationContext
-    }
+  override fun setApplicationContext(applicationContext: ApplicationContext) {
+    context = applicationContext
+  }
 
-    companion object {
-        lateinit var context: ApplicationContext
+  companion object {
+    lateinit var context: ApplicationContext
 
-        fun <T> bean(type: Class<T>): T =
-            context.getBean(type)
+    fun <T> bean(type: Class<T>): T =
+      context.getBean(type)
 
-        fun <T> bean(type: Class<T>, name: String): T =
-            context.getBean(name, type)
-    }
+    fun <T> bean(type: Class<T>, name: String): T =
+      context.getBean(name, type)
+  }
 }
