@@ -16,4 +16,20 @@
     <module>_parent</module>
   </modules>
 
+  <repositories>
+    <repository>
+      <id>git.denktmit.tech</id>
+      <url>https://git.denktmit.tech/api/packages/DenktMiteG/maven</url>
+    </repository>
+  </repositories>
+  <distributionManagement>
+    <repository>
+      <id>git.denktmit.tech</id>
+      <url>https://git.denktmit.tech/api/packages/DenktMiteG/maven</url>
+    </repository>
+    <snapshotRepository>
+      <id>git.denktmit.tech</id>
+      <url>https://git.denktmit.tech/api/packages/DenktMiteG/maven</url>
+    </snapshotRepository>
+  </distributionManagement>
 </project>

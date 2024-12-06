@@ -1,0 +1,62 @@
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    env:
+      MAVEN_OPTS: >-
+        -Dhttps.protocols=TLSv1.2
+        -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=WARN
+        -Dorg.slf4j.simpleLogger.showDateTime=true
+        -Djava.awt.headless=true
+      MAVEN_CLI_OPTS: >-
+        --batch-mode
+        --errors
+        --fail-at-end
+        --show-version
+
+    steps:
+      - name: Set up | Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up | Java 18
+        uses: https://github.com/actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: 18
+          cache: maven
+          server-id: git.denktmit.tech
+          server-username: CI_ACTOR
+          server-password: CI_TOKEN
+
+      - name: Set up | Maven
+        uses: https://github.com/stCarolas/setup-maven@v5
+        with:
+          maven-version: 3.9.9
+
+      - name: Chore | Determine next version
+        id: vars
+        run: |
+          CURRENT_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+          COMMIT_HASH=$(git rev-parse --short "${GITHUB_SHA}")
+          TARGET_VERSION="${CURRENT_VERSION}+${GITHUB_RUN_NUMBER}.${COMMIT_HASH}"
+
+          echo "TARGET_VERSION=${TARGET_VERSION}" >> $GITHUB_ENV
+
+          echo "Next version is ${TARGET_VERSION}"
+
+      - name: Maven | Set Version
+        run: mvn $MAVEN_CLI_OPTS versions:set -DnewVersion=${TARGET_VERSION}
+
+      - name: Maven | Build
+        run: mvn $MAVEN_CLI_OPTS clean verify package
+
+      - name: Maven | Snapshot Release
+        if: github.event_name != 'pull_request'
+        env:
+          CI_ACTOR: ${{ secrets.CI_ACTOR }}
+          CI_TOKEN: ${{ secrets.CI_TOKEN }}
+        run: mvn $MAVEN_CLI_OPTS deploy
