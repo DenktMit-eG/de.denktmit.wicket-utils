@@ -13,6 +13,8 @@
   <artifactId>dm-wicket-kotlin</artifactId>
 
   <name>DenktMit :: Wicket :: Kotlin</name>
+  <!--suppress MavenRedundantGroupId https://codeberg.org/forgejo/forgejo/pulls/6329 waiting for release 10 -->
+  <groupId>de.loosetie.crudular</groupId>
 
   <dependencies>
     <dependency>

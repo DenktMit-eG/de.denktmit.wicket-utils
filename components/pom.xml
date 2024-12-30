@@ -11,6 +11,8 @@
     <relativePath>../_parent/pom.xml</relativePath>
   </parent>
   <artifactId>dm-wicket-components</artifactId>
+  <!--suppress MavenRedundantGroupId https://codeberg.org/forgejo/forgejo/pulls/6329 waiting for release 10 -->
+  <groupId>de.loosetie.crudular</groupId>
 
   <name>DenktMit :: Wicket :: Components</name>
 
