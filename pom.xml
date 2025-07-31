@@ -20,6 +20,10 @@
       <id>git.denktmit.tech</id>
       <url>https://git.denktmit.tech/api/packages/DenktMiteG/maven</url>
     </repository>
+    <repository>
+      <id>denktmit-oss</id>
+      <url>https://git.denktmit.tech/api/packages/DenktMit-OSS/maven</url>
+    </repository>
   </repositories>
   <distributionManagement>
     <repository>

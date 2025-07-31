@@ -7,16 +7,31 @@
     <version>0.1.0-SNAPSHOT</version>
     <relativePath>../_parent/pom.xml</relativePath>
   </parent>
-  <artifactId>dm-wicket-model</artifactId>
-  <name>DenktMit :: Wicket :: Model</name>
+  <artifactId>lt-wicket-util</artifactId>
+  <name>DenktMit :: Wicket :: From Rechnomat</name>
+  <properties>
+    <dir.project.root>${project.basedir}/..</dir.project.root>
+  </properties>
   <dependencies>
     <dependency>
-      <groupId>de.denktmit.wicket</groupId>
-      <artifactId>dm-wicket-kotlin</artifactId>
+      <groupId>de.loosetie.utils</groupId>
+      <artifactId>lt-utils-kotlin</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>jakarta.servlet</groupId>
+      <artifactId>jakarta.servlet-api</artifactId>
     </dependency>
     <dependency>
       <groupId>org.apache.wicket</groupId>
       <artifactId>wicket-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.wicket</groupId>
+      <artifactId>wicket-extensions</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.wicket</groupId>
+      <artifactId>wicket-native-websocket-javax</artifactId>
     </dependency>
   </dependencies>
 </project>
