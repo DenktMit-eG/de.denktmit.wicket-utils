@@ -32,8 +32,8 @@
     <maven.javadoc.skip>true</maven.javadoc.skip>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <version.kotlin>1.9.21</version.kotlin>
-    <version.wicket>10.0.0-M2</version.wicket>
+    <version.kotlin>2.1.21</version.kotlin>
+    <version.wicket>10.6.0</version.wicket>
   </properties>
 
   <dependencies>
