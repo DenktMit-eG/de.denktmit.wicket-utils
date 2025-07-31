@@ -1,0 +1,58 @@
+package de.loosetie.util.wicket.table
+
+import de.loosetie.util.wicket.component.MyContainer
+import de.loosetie.util.wicket.component.MyLabel
+import de.loosetie.util.wicket.component.MyListView
+import de.loosetie.util.wicket.modelOf
+import org.apache.wicket.model.IModel
+import kotlin.reflect.KProperty0
+
+/**
+ * Default structure
+ *
+ * ```
+ * <table wicket:id="[id]">
+ *   <thead wicket:id="header">
+ *     <tr>
+ *       <td wicket:id="[column_id]"></td>
+ *     </tr>
+ *   </thead>
+ *   <tbody wicket:id="body">
+ *     <tr wicket:id="rows">
+ *       <td wicket:id="[column_id]"></td>
+ *     </tr>
+ *   </tbody>
+ * </table>
+ * ```
+ *
+ * Replace all values in [...] with the matching ids of your components
+ */
+class MyTableContainer<RD : Any>(
+  id: String,
+  val provider: IModel<List<RD>>,
+  val columns: List<TableColumn<RD, *>>,
+) : MyContainer(id) {
+  constructor(
+    field: KProperty0<List<RD>>,
+    columns: List<TableColumn<RD, *>>,
+    id: String = field.name,
+    provider: IModel<List<RD>> = modelOf(field),
+  ) : this(id, provider, columns)
+
+  override fun onInitialize() {
+    super.onInitialize()
+
+    +MyContainer("header") {
+      columns.forEach { c ->
+        +MyLabel(c.id, modelOf { c.name })
+      }
+    }
+    +MyContainer("body") {
+      +MyListView("rows", provider) { data ->
+        columns.forEach { c ->
+          +c.createCellComponent(data)
+        }
+      }
+    }
+  }
+}
