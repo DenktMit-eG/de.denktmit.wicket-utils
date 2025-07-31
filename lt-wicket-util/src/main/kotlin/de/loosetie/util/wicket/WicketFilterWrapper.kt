@@ -1,10 +1,6 @@
 package de.loosetie.util.wicket
 
-import jakarta.servlet.Filter
-import jakarta.servlet.FilterChain
-import jakarta.servlet.FilterConfig
-import jakarta.servlet.ServletRequest
-import jakarta.servlet.ServletResponse
+import jakarta.servlet.*
 import jakarta.servlet.http.HttpServletRequest
 import org.apache.wicket.protocol.http.WicketFilter
 
