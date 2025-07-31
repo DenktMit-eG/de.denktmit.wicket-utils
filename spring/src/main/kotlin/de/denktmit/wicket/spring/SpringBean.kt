@@ -31,5 +31,4 @@ class SpringBean<T>(
 }
 
 /** usage `val service by bean<ServiceType>()` */
-inline fun <reified T> bean(name: String? = null) =
-  SpringBean(T::class.java, name)
+inline fun <reified T> bean(name: String? = null) = SpringBean(T::class.java, name)
