@@ -10,12 +10,10 @@
     <version>0.1.0-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
+
   <artifactId>dm-wicket-bom</artifactId>
   <packaging>pom</packaging>
-
   <name>DenktMit :: Wicket :: BOM</name>
-  <!--suppress MavenRedundantGroupId https://codeberg.org/forgejo/forgejo/pulls/6329 waiting for release 10 -->
-  <groupId>de.denktmit.wicket</groupId>
 
   <dependencyManagement>
     <dependencies>
