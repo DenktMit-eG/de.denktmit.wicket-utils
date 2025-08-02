@@ -20,7 +20,7 @@ jobs:
 
     steps:
       - name: Set up | Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up | Java 18
         uses: https://github.com/actions/setup-java@v4
