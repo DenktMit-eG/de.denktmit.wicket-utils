@@ -22,11 +22,11 @@ jobs:
       - name: Set up | Checkout
         uses: actions/checkout@v4
 
-      - name: Set up | Java 18
+      - name: Set up | Java 21
         uses: https://github.com/actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: 18
+          java-version: 21
           cache: maven
           server-id: git.denktmit.tech
           server-username: CI_ACTOR
