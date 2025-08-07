@@ -1,6 +1,7 @@
 package de.denktmit.wicket.components.table
 
-import de.denktmit.wicket.components.component.DmContainer
+import de.denktmit.wicket.components.base.DmContainer
+import de.denktmit.wicket.components.base.unaryPlus
 import de.denktmit.wicket.components.component.DmLabel
 import de.denktmit.wicket.components.component.DmListItem
 import de.denktmit.wicket.components.component.DmListView

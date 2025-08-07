@@ -1,6 +1,6 @@
 package de.denktmit.wicket.components.table
 
-import de.denktmit.wicket.components.component.DmContainer
+import de.denktmit.wicket.components.base.DmContainer
 import de.denktmit.wicket.components.component.DmLabel
 import java.io.Serializable
 import kotlin.reflect.KMutableProperty1
