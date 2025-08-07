@@ -35,7 +35,7 @@ class DmExternalLink(
 
   override fun onInitialize() {
     super.onInitialize()
-    addCssClass("dm-external-link lt-link-$id")
+    addCssClass("dm-external-link dm-link-$id")
     init()
   }
 
