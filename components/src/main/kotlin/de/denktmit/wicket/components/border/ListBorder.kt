@@ -18,8 +18,8 @@ package de.denktmit.wicket.components.border
 
 import de.denktmit.wicket.components.addCssClass
 import de.denktmit.wicket.components.classNameAsCssClass
-import de.denktmit.wicket.components.component.MyListItem
-import de.denktmit.wicket.components.component.MyListView
+import de.denktmit.wicket.components.component.DmListItem
+import de.denktmit.wicket.components.component.DmListView
 import org.apache.wicket.*
 import org.apache.wicket.behavior.Behavior
 import org.apache.wicket.markup.*
@@ -37,7 +37,7 @@ constructor(
   id: String,
   val model: IModel<L>,
   @Transient
-  val populateItem: MyListItem<T>.(T) -> Unit,
+  val populateItem: DmListItem<T>.(T) -> Unit,
   @Transient
   private val init: ListBorder<T, L>.() -> Unit = {},
 ) : WebMarkupContainer(id, model),
@@ -201,8 +201,8 @@ constructor(
   class BorderListView<T : Any, L : List<T>>(
     id: String,
     model: IModel<L>,
-    populateItem: MyListItem<T>.(T) -> Unit,
-  ) : MyListView<T, L>(id, model, false, populateItem) {
+    populateItem: DmListItem<T>.(T) -> Unit,
+  ) : DmListView<T, L>(id, model, false, populateItem) {
     var rendering = false
 
     override fun onBeforeRender() {

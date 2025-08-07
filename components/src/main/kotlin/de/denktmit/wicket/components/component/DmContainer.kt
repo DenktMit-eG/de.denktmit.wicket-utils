@@ -1,9 +1,8 @@
-package de.denktmit.wicket.components.base
+package de.denktmit.wicket.components.component
 
 import de.denktmit.wicket.components.addCssClass
-import de.denktmit.wicket.components.classNameAsCssClass
 import org.apache.wicket.Component
-import org.apache.wicket.MarkupContainer
+import org.apache.wicket.behavior.Behavior
 import org.apache.wicket.markup.html.WebMarkupContainer
 import org.apache.wicket.model.IModel
 
@@ -15,15 +14,25 @@ import org.apache.wicket.model.IModel
 open class DmContainer(
   id: String,
   model: IModel<*>? = null,
-  open val init: DmContainer.() -> Unit = {}
+  @Transient
+  open val init: DmContainer.() -> Unit = {},
 ) : WebMarkupContainer(id, model) {
+  /** Convenience extension to make use of `+SomeComponent(...)` instead of `add(SomeComponent(...))` */
+  operator fun Component.unaryPlus() {
+    this@DmContainer.add(this)
+  }
+
+  operator fun Behavior.unaryPlus() {
+    this@DmContainer.add(this)
+  }
 
   override fun onInitialize() {
     super.onInitialize()
-    addCssClass("dm-id-$id", "dm-${classNameAsCssClass()}")
+    addCssClass("dm-container", "dm-id-$id")
     init()
   }
 
+  @Transient
   var visible: (() -> Boolean)? = null
 
   override fun onConfigure() {
@@ -31,11 +40,8 @@ open class DmContainer(
     visible?.let { setVisible(it()) }
   }
 
-}
-
-
-/** Convenience extension to make use of `+SomeComponent(...)` instead of `add(SomeComponent(...))` */
-context (MarkupContainer)
-operator fun Component.unaryPlus() {
-  this@MarkupContainer.add(this@Component)
+  fun enableAjax() {
+    outputMarkupId = true
+    outputMarkupPlaceholderTag = true
+  }
 }

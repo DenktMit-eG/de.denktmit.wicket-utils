@@ -1,7 +1,7 @@
 package de.denktmit.wicket.components.table
 
-import de.denktmit.wicket.components.component.MyContainer
-import de.denktmit.wicket.components.component.MyLabel
+import de.denktmit.wicket.components.component.DmContainer
+import de.denktmit.wicket.components.component.DmLabel
 import java.io.Serializable
 import kotlin.reflect.KMutableProperty1
 import kotlin.reflect.KProperty1
@@ -14,13 +14,13 @@ class TableColumn<RD, VALUE>(
   @Transient
   val setter: ((RD, VALUE) -> Unit)? = null,
   @Transient
-  val initCell: (MyContainer.(TableColumn<RD, VALUE>, RD, VALUE) -> Unit)? = null,
+  val initCell: (DmContainer.(TableColumn<RD, VALUE>, RD, VALUE) -> Unit)? = null,
 ) : Serializable {
   constructor(
     field: KProperty1<RD, VALUE>,
     name: String,
     id: String = field.name,
-    initCell: (MyContainer.(TableColumn<RD, VALUE>, RD, VALUE) -> Unit)? = null,
+    initCell: (DmContainer.(TableColumn<RD, VALUE>, RD, VALUE) -> Unit)? = null,
   ) : this(
     id,
     name,
@@ -40,8 +40,8 @@ class TableColumn<RD, VALUE>(
 
   fun createCellComponent(row: RD) =
     initCell?.let { initFn ->
-      MyContainer(id) {
+      DmContainer(id) {
         initFn(this@TableColumn, row, getter(row))
       }
-    } ?: MyLabel(id, getter(row).toString())
+    } ?: DmLabel(id, getter(row).toString())
 }

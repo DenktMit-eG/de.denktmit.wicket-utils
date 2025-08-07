@@ -1,9 +1,9 @@
 package de.denktmit.wicket.components.table
 
-import de.denktmit.wicket.components.component.MyContainer
-import de.denktmit.wicket.components.component.MyLabel
-import de.denktmit.wicket.components.component.MyListItem
-import de.denktmit.wicket.components.component.MyListView
+import de.denktmit.wicket.components.component.DmContainer
+import de.denktmit.wicket.components.component.DmLabel
+import de.denktmit.wicket.components.component.DmListItem
+import de.denktmit.wicket.components.component.DmListView
 import de.denktmit.wicket.model.modelOf
 import org.apache.wicket.model.IModel
 import java.io.Serializable
@@ -12,15 +12,15 @@ class DynamicTableContainer<RD : Any>(
   id: String,
   val provider: IModel<List<RD>>,
   val columns: List<DynamicTableColumn<RD, *>>,
-) : MyContainer(id) {
+) : DmContainer(id) {
   override fun onInitialize() {
     super.onInitialize()
 
-    +MyListView("columns", modelOf { columns }) { column ->
-      +MyLabel("column", modelOf { column.name })
+    +DmListView("columns", modelOf { columns }) { column ->
+      +DmLabel("column", modelOf { column.name })
     }
-    +MyListView("rows", provider) { data ->
-      +MyListView("cell", modelOf { columns }) { column ->
+    +DmListView("rows", provider) { data ->
+      +DmListView("cell", modelOf { columns }) { column ->
         column.createCellComponent(this, data)
       }
     }
@@ -35,7 +35,7 @@ class DynamicTableColumn<RD, VALUE>(
   @Transient
   val setter: ((RD, VALUE) -> Unit)? = null,
   @Transient
-  val initCell: (MyListItem<*>.(DynamicTableColumn<RD, VALUE>, RD, VALUE) -> Unit)? = null,
+  val initCell: (DmListItem<*>.(DynamicTableColumn<RD, VALUE>, RD, VALUE) -> Unit)? = null,
 ) : Serializable {
   operator fun get(row: RD): VALUE = getter.invoke(row)
 
@@ -47,9 +47,9 @@ class DynamicTableColumn<RD, VALUE>(
       ?: throw RuntimeException("Setter is not available (id='$id', getter='$getter'")
 
   fun createCellComponent(
-    item: MyListItem<*>,
+    item: DmListItem<*>,
     row: RD,
   ) = initCell?.let { initFn ->
     item.initFn(this@DynamicTableColumn, row, getter(row))
-  } ?: MyLabel(id, getter(row).toString())
+  } ?: DmLabel(id, getter(row).toString())
 }
