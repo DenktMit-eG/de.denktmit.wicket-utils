@@ -15,7 +15,6 @@
     <module>../kotlin</module>
     <module>../model</module>
     <module>../spring</module>
-    <module>../lt-wicket-util</module>
   </modules>
   <properties>
     <java.version>21</java.version>
