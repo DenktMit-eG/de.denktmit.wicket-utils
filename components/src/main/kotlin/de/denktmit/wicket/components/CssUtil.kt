@@ -2,6 +2,7 @@ package de.denktmit.wicket.components
 
 import org.apache.wicket.ClassAttributeModifier
 import org.apache.wicket.Component
+import org.apache.wicket.MarkupContainer
 
 fun Component.addCssClass(vararg name: String) {
   add(object : ClassAttributeModifier() {
@@ -25,3 +26,5 @@ private val UPPERCASE_CHAR_REGEX by lazy { Regex("([A-Z])") }
 fun Any.classNameAsCssClass(): String {
   return javaClass.simpleName.replace(UPPERCASE_CHAR_REGEX) { "-" + it.value }.lowercase()
 }
+
+fun <TC : Component, TM : MarkupContainer> TM.q(component: TC): TC = component.also { queue(it) }
