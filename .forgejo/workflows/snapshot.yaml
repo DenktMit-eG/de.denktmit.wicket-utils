@@ -52,7 +52,7 @@ jobs:
         run: mvn $MAVEN_CLI_OPTS versions:set -DnewVersion=${TARGET_VERSION}
 
       - name: Maven | Build
-        run: mvn $MAVEN_CLI_OPTS clean verify package
+        run: mvn $MAVEN_CLI_OPTS clean install
 
       - name: Maven | Snapshot Release
         if: github.event_name != 'pull_request'
