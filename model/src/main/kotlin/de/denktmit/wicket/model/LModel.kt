@@ -10,24 +10,28 @@ import kotlin.reflect.jvm.ExperimentalReflectionOnLambdas
 import kotlin.reflect.jvm.reflect
 
 @OptIn(ExperimentalReflectionOnLambdas::class)
-class LModel<T> internal constructor(
+class LModel<T>(
+  @Transient
   val get: () -> T,
+  @Transient
   val set: (T) -> Unit = {},
-  override val valueType: Class<T> = get.reflect()?.returnType?.toClass()!!
+  override val valueType: Class<T>,
 ) : IModel<T>, ValueType<T> {
   override fun detach() {}
+
   override fun getObject(): T = get()
+
   override fun setObject(obj: T) {
     set(obj)
   }
 }
 
+inline fun <reified T> modelOf(noinline get: () -> T): IModel<T> = LModel(get, valueType = T::class.java)
 
-fun <T> modelOf(get: () -> T): IModel<T> =
-  LModel(get)
-
-fun <T> modelOf(get: () -> T, set: (T) -> Unit): IModel<T> =
-  LModel(get, set)
+inline fun <reified T> modelOf(
+  noinline get: () -> T,
+  noinline set: (T) -> Unit,
+): IModel<T> = LModel(get, set, valueType = T::class.java)
 
 fun <T> modelOf(property: KProperty0<T>): IModel<T> =
   if (property is KMutableProperty0<T>)

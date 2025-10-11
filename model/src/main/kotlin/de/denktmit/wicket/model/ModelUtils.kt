@@ -4,7 +4,7 @@ import org.apache.wicket.Component
 import org.apache.wicket.model.IModel
 
 
-fun <T, R> IModel<T>.map(mapper: (T) -> R): IModel<R> =
+inline fun <T, reified R> IModel<T>.map(crossinline mapper: (T) -> R): IModel<R> =
   modelOf { `object`.let(mapper) }
 
 
