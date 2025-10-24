@@ -1,0 +1,60 @@
+name: CI/CD Wicket Utils
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  release:
+    types: [ published ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build and Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up | Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Maven Central Repository
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: 21
+          server-id: central
+          server-username: MAVEN_CENTRAL_USERNAME
+          server-password: MAVEN_CENTRAL_PASSWORD
+          gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
+          gpg-passphrase: MAVEN_GPG_PASSPHRASE
+
+      - name: Set up Maven cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - name: Build
+        run: mvn -B -ntp clean install
+
+      - name: Release
+        if: github.event_name == 'release' && github.event.action == 'published'
+        run: |
+          # Assign the tag name to a variable
+          tag_name="${{ github.event.release.tag_name }}"
+          
+          # Check if the tag name starts with 'v' and strip it if present
+          if [[ $tag_name == v* ]]; then
+            tag_name="${tag_name:1}"
+          fi
+          
+          git config --global user.email "hallo@denktmit.de"
+          git config --global user.name "DenktMit eG"
+          mvn -Drevision=${tag_name} -Dchangelist= -B -ntp -DskipTests -Pci-cd clean deploy
+        env:
+          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
+          MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
