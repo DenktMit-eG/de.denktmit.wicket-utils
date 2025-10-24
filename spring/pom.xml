@@ -9,6 +9,7 @@
   </parent>
   <artifactId>dm-wicket-spring</artifactId>
   <name>DenktMit :: Wicket :: Spring</name>
+  <description>Integration utilities between Apache Wicket and Spring for DenktMit applications.</description>
   <dependencies>
     <dependency>
       <groupId>de.denktmit.wicket</groupId>

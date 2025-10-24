@@ -9,6 +9,7 @@
   </parent>
   <artifactId>dm-wicket-components</artifactId>
   <name>DenktMit :: Wicket :: Components</name>
+  <description>Reusable Wicket UI components and utilities for DenktMit applications.</description>
   <dependencies>
     <dependency>
       <groupId>de.denktmit.wicket</groupId>

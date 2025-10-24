@@ -10,6 +10,7 @@
   <artifactId>dm-wicket-parent</artifactId>
   <packaging>pom</packaging>
   <name>DenktMit :: Wicket :: Parent</name>
+  <description>Parent POM providing shared configuration and dependency management for DenktMit Wicket modules.</description>
   <modules>
     <module>../components</module>
     <module>../kotlin</module>

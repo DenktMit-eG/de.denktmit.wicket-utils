@@ -9,6 +9,7 @@
   </parent>
   <artifactId>dm-wicket-model</artifactId>
   <name>DenktMit :: Wicket :: Model</name>
+  <description>Model abstractions and utilities for Apache Wicket used in DenktMit projects.</description>
   <dependencies>
     <dependency>
       <groupId>de.denktmit.wicket</groupId>

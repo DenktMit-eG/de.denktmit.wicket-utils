@@ -6,6 +6,7 @@
   <version>${revision}${sha1}${changelist}</version>
   <packaging>pom</packaging>
   <name>DenktMit :: Wicket :: root</name>
+  <description>Aggregator project for DenktMit Wicket modules (root POM).</description>
   <modules>
     <module>_bom</module>
     <module>_parent</module>

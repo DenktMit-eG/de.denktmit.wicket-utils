@@ -10,6 +10,7 @@
   <artifactId>dm-wicket-bom</artifactId>
   <packaging>pom</packaging>
   <name>DenktMit :: Wicket :: BOM</name>
+  <description>Bill of Materials (BOM) for aligning versions across DenktMit Wicket modules.</description>
   <dependencyManagement>
     <dependencies>
       <dependency>

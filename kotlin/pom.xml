@@ -9,6 +9,7 @@
   </parent>
   <artifactId>dm-wicket-kotlin</artifactId>
   <name>DenktMit :: Wicket :: Kotlin</name>
+  <description>Kotlin extensions and helpers for working with Apache Wicket in DenktMit projects.</description>
   <dependencies>
     <dependency>
       <groupId>org.jetbrains.kotlin</groupId>
