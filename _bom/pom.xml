@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>de.denktmit.wicket</groupId>
+    <artifactId>dm-wicket-root</artifactId>
+    <version>${revision}${sha1}${changelist}</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+  <artifactId>dm-wicket-bom</artifactId>
+  <packaging>pom</packaging>
+  <name>DenktMit :: Wicket :: BOM</name>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
         <groupId>de.denktmit.wicket</groupId>
-        <artifactId>dm-wicket-root</artifactId>
-        <version>${revision}${sha1}${changelist}</version>
-        <relativePath>../pom.xml</relativePath>
-    </parent>
-    <artifactId>dm-wicket-bom</artifactId>
-    <packaging>pom</packaging>
-    <name>DenktMit :: Wicket :: BOM</name>
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>de.denktmit.wicket</groupId>
-                <artifactId>dm-wicket-components</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>de.denktmit.wicket</groupId>
-                <artifactId>dm-wicket-kotlin</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>de.denktmit.wicket</groupId>
-                <artifactId>dm-wicket-model</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>de.denktmit.wicket</groupId>
-                <artifactId>dm-wicket-spring</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+        <artifactId>dm-wicket-components</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>de.denktmit.wicket</groupId>
+        <artifactId>dm-wicket-kotlin</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>de.denktmit.wicket</groupId>
+        <artifactId>dm-wicket-model</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>de.denktmit.wicket</groupId>
+        <artifactId>dm-wicket-spring</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 </project>
