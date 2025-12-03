@@ -12,6 +12,7 @@ import org.apache.wicket.request.component.IRequestablePage
 open class DmComponent(
   id: String,
   model: IModel<*>? = null,
+  @Transient
   val init: DmComponent.() -> Unit = {}
 ) : WebComponent(id, model) {
 

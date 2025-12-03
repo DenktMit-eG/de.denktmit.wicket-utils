@@ -15,6 +15,7 @@ import org.apache.wicket.model.IModel
 open class DmContainer(
   id: String,
   model: IModel<*>? = null,
+  @Transient
   open val init: DmContainer.() -> Unit = {}
 ) : WebMarkupContainer(id, model) {
 
