@@ -28,6 +28,8 @@ jobs:
           server-password: MAVEN_CENTRAL_PASSWORD
           gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
           gpg-passphrase: MAVEN_GPG_PASSPHRASE
+        env:
+          MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
 
       - name: Set up Maven cache
         uses: actions/cache@v3
@@ -38,7 +40,7 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Build
-        run: mvn -B -ntp clean install
+        run: mvn -B -ntp -Dgpg.skip=true clean install
 
       - name: Release
         if: github.event_name == 'release' && github.event.action == 'published'
