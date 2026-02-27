@@ -22,12 +22,14 @@
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
     <targetJdk>${java.version}</targetJdk>
-    <version.io.mockk.mockk-jvm>1.14.6</version.io.mockk.mockk-jvm>
-    <version.kotlin>2.2.20</version.kotlin>
-    <version.org.apache.maven.plugins.maven-source-plugin>3.3.1</version.org.apache.maven.plugins.maven-source-plugin>
-    <version.org.apache.wicket>10.7.0</version.org.apache.wicket>
+    <version.io.mockk.mockk-jvm>1.14.9</version.io.mockk.mockk-jvm>
+    <version.kotlin>2.2.21</version.kotlin>
+    <version.org.apache.maven.plugins.maven-source-plugin>3.4.0</version.org.apache.maven.plugins.maven-source-plugin>
+    <version.org.apache.maven.plugins.maven-surefire-plugin>3.5.4</version.org.apache.maven.plugins.maven-surefire-plugin>
+    <version.org.apache.wicket>10.8.0</version.org.apache.wicket>
+    <version.org.jacoco.maven-plugin>0.8.14</version.org.jacoco.maven-plugin>
     <version.org.jetbrains.dokka.dokka-maven-plugin>2.1.0</version.org.jetbrains.dokka.dokka-maven-plugin>
-    <version.org.springframework.boot.spring-boot-dependencies>3.5.6</version.org.springframework.boot.spring-boot-dependencies>
+    <version.org.springframework.boot.spring-boot-dependencies>3.5.11</version.org.springframework.boot.spring-boot-dependencies>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -81,6 +83,11 @@
         <version>${version.org.apache.wicket}</version>
       </dependency>
       <dependency>
+        <groupId>org.apache.wicket</groupId>
+        <artifactId>wicket-tester</artifactId>
+        <version>${version.org.apache.wicket}</version>
+      </dependency>
+      <dependency>
         <groupId>org.jetbrains.kotlin</groupId>
         <artifactId>kotlin-reflect</artifactId>
         <version>${version.kotlin}</version>
@@ -115,6 +122,11 @@
       <artifactId>assertj-core</artifactId>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
   <build>
     <sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
@@ -131,6 +143,34 @@
               <goals>
                 <goal>jar-no-fork</goal>
               </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>${version.org.apache.maven.plugins.maven-surefire-plugin}</version>
+          <configuration>
+            <useModulePath>false</useModulePath>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>${version.org.jacoco.maven-plugin}</version>
+          <executions>
+            <execution>
+              <id>prepare-agent</id>
+              <goals>
+                <goal>prepare-agent</goal>
+              </goals>
+            </execution>
+            <execution>
+              <id>report</id>
+              <goals>
+                <goal>report</goal>
+              </goals>
+              <phase>verify</phase>
             </execution>
           </executions>
         </plugin>
@@ -197,6 +237,14 @@
             </goals>
           </execution>
         </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
