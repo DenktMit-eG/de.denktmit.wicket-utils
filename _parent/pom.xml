@@ -16,6 +16,7 @@
     <module>../kotlin</module>
     <module>../model</module>
     <module>../spring</module>
+    <module>../_reports</module>
   </modules>
   <properties>
     <java.version>21</java.version>
