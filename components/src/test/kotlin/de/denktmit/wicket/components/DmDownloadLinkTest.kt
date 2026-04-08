@@ -47,4 +47,11 @@ class DmDownloadLinkTest : WicketTestBase() {
     assertThat(stream.getContentType()).isEqualTo("application/octet-stream")
     assertThatCode { stream.close() }.doesNotThrowAnyException()
   }
+
+  @Test
+  fun `constructs with explicit mime type`() {
+    val link = DmDownloadLink("d", fileName = "x.bin", outputData = byteArrayOf(1, 2), mimeType = "application/pdf")
+
+    assertThat(link.id).isEqualTo("d")
+  }
 }

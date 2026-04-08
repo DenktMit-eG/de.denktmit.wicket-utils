@@ -51,4 +51,43 @@ class DmImageTest : WicketTestBase() {
     assertThat(image.outputMarkupId).isTrue()
     assertThat(image.outputMarkupPlaceholderTag).isTrue()
   }
+
+  @Test
+  fun `shouldAddAntiCacheParameter returns false when antiCache empty`() {
+    val image = DmImage("i", ByteArrayResource("image/png", byteArrayOf(1)), antiCache = listOf())
+
+    val result = invokeDeclared(image, "shouldAddAntiCacheParameter") as Boolean
+
+    assertThat(result).isFalse()
+  }
+
+  @Test
+  fun `onInitialize adds CSS`() {
+    val image = DmImage("i", ByteArrayResource("image/png", byteArrayOf(1)))
+
+    invokeDeclared(image, "onInitialize")
+
+    assertThat(image.behaviors).isNotEmpty
+  }
+
+  @Test
+  fun `addAntiCacheParameter with query string appends ampersand`() {
+    val image = DmImage("i", ByteArrayResource("image/png", byteArrayOf(1)))
+    val tag = ComponentTag("img", XmlTag.TagType.OPEN)
+    tag.put("src", "/img.png?existing=1")
+
+    image.reloadAntiCache(listOf("v1"), byteArrayOf(5))
+    invokeDeclared(image, "addAntiCacheParameter", tag)
+
+    assertThat(tag.attributes.getString("src")).contains("&v=v1")
+  }
+
+  @Test
+  fun `onConfigure without visibility does not change visibility`() {
+    val image = DmImage("i", ByteArrayResource("image/png", byteArrayOf(1)))
+
+    invokeDeclared(image, "onConfigure")
+
+    assertThat(image.isVisible).isTrue()
+  }
 }

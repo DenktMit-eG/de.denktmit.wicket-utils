@@ -1,5 +1,6 @@
 package de.denktmit.wicket.components
 
+import de.denktmit.wicket.components.behavior.DisabledBehavior
 import de.denktmit.wicket.components.component.DmNullableLabel
 import de.denktmit.wicket.model.modelOf
 import org.apache.wicket.markup.ComponentTag
@@ -28,5 +29,41 @@ class DmNullableLabelTest : WicketTestBase() {
 
     assertThat(label.isVisible).isFalse()
     assertThat(tag.attributes.getString("data-nullable")).isEqualTo("yes")
+  }
+
+  @Test
+  fun `onInitialize adds CSS`() {
+    val label = DmNullableLabel("nl", modelOf { "x" })
+
+    invokeDeclared(label, "onInitialize")
+
+    assertThat(label.behaviors).isNotEmpty
+  }
+
+  @Test
+  fun `string value constructor`() {
+    val label = DmNullableLabel("nl", "text")
+
+    assertThat(label.defaultModelObjectAsString).isEqualTo("text")
+  }
+
+  @Test
+  fun `operator unaryPlus adds behavior`() {
+    val label = DmNullableLabel("nl", modelOf { "x" }) {
+      +DisabledBehavior()
+    }
+
+    invokeDeclared(label, "onInitialize")
+
+    assertThat(label.behaviors.filterIsInstance<DisabledBehavior>()).isNotEmpty
+  }
+
+  @Test
+  fun `onConfigure without visible does not change visibility`() {
+    val label = DmNullableLabel("nl", modelOf { "x" })
+
+    invokeDeclared(label, "onConfigure")
+
+    assertThat(label.isVisible).isTrue()
   }
 }

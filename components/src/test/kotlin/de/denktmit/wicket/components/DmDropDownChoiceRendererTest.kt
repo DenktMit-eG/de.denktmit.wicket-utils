@@ -24,4 +24,22 @@ class DmDropDownChoiceRendererTest : WicketTestBase() {
 
     assertThat(choice.isVisible).isFalse()
   }
+
+  @Test
+  fun `onInitialize adds CSS`() {
+    val choice = DmDropDownChoiceRenderer("dcr", Model.of("a"), Model.ofList(listOf("a")), ChoiceRenderer<String>())
+
+    invokeDeclared(choice, "onInitialize")
+
+    assertThat(choice.behaviors).isNotEmpty
+  }
+
+  @Test
+  fun `onConfigure without visible keeps visible`() {
+    val choice = DmDropDownChoiceRenderer("dcr", Model.of("a"), Model.ofList(listOf("a")), ChoiceRenderer<String>())
+
+    invokeDeclared(choice, "onConfigure")
+
+    assertThat(choice.isVisible).isTrue()
+  }
 }

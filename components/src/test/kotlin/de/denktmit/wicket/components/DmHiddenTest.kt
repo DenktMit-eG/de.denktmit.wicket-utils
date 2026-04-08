@@ -12,4 +12,13 @@ class DmHiddenTest : WicketTestBase() {
 
     assertThat(hidden.id).isEqualTo("h")
   }
+
+  @Test
+  fun `onConfigure sets invisible`() {
+    val hidden = DmHidden("h")
+
+    invokeDeclared(hidden, "onConfigure")
+
+    assertThat(hidden.isVisible).isFalse()
+  }
 }

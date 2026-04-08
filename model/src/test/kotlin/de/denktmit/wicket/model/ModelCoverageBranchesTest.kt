@@ -17,6 +17,10 @@ class ModelCoverageBranchesTest {
   private class HomePage : WebPage()
   private data class MutableHolder(var value: String)
   private data class ImmutableHolder(val value: String) : Serializable
+  private data class Inner(var value: String) : Serializable
+  private data class Outer(var inner: Inner) : Serializable
+  private val immutableVal = "immutable"
+  private var mutableVar = "original"
 
   @Suppress("UNCHECKED_CAST")
   @Test
@@ -52,6 +56,72 @@ class ModelCoverageBranchesTest {
     val mapped = Model.of(5).map { it * 3 }
 
     assertThat(mapped.getObject()).isEqualTo(15)
+  }
+
+  @Test
+  fun `modelOr returns default when property is null`() {
+    val holder = object { var name: String? = null }
+    val model = modelOr(holder::name, "default")
+
+    assertThat(model.getObject()).isEqualTo("default")
+    holder.name = "set"
+    assertThat(model.getObject()).isEqualTo("set")
+  }
+
+  @Test
+  fun `modelOf with obj lambda and mutable property supports set`() {
+    val holder = MutableHolder("a")
+    val model = modelOf({ holder }, MutableHolder::value)
+
+    model.setObject("b")
+    assertThat(model.getObject()).isEqualTo("b")
+    assertThat(holder.value).isEqualTo("b")
+  }
+
+  @Test
+  fun `modelOf with obj lambda and immutable property is read only`() {
+    val holder = ImmutableHolder("fixed")
+    val model = modelOf({ holder }, ImmutableHolder::value)
+
+    assertThat(model.getObject()).isEqualTo("fixed")
+  }
+
+  @Test
+  fun `modelOf with obj lambda and nested property supports mutable chain`() {
+    val outer = Outer(Inner("a"))
+    val model = modelOf({ outer.inner }, Inner::value)
+
+    assertThat(model.getObject()).isEqualTo("a")
+    model.setObject("b")
+    assertThat(outer.inner.value).isEqualTo("b")
+  }
+
+  @Test
+  fun `modelOf with IModel and two properties supports mutable chain`() {
+    val wrapper = Outer(Inner("x"))
+    val wrapperModel = org.apache.wicket.model.Model.of(wrapper)
+    val model = modelOf(wrapperModel, Outer::inner, Inner::value)
+
+    assertThat(model.getObject()).isEqualTo("x")
+    model.setObject("y")
+    assertThat(wrapper.inner.value).isEqualTo("y")
+  }
+
+  @Test
+  fun `modelOf with KProperty0 immutable property is read only`() {
+    val model = modelOf(::immutableVal)
+
+    assertThat(model.getObject()).isEqualTo("immutable")
+  }
+
+  @Test
+  fun `modelOf with KProperty0 mutable property supports set`() {
+    mutableVar = "original"
+    val model = modelOf(::mutableVar)
+
+    model.setObject("updated")
+    assertThat(mutableVar).isEqualTo("updated")
+    assertThat(model.getObject()).isEqualTo("updated")
   }
 
   @Test

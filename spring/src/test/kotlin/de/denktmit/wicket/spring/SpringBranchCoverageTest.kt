@@ -58,6 +58,14 @@ class SpringBranchCoverageTest {
   }
 
   @Test
+  fun `bean reified inline with name parameter`() {
+    val namedBean = bean<Service>("myService")
+
+    assertThat(namedBean.type).isEqualTo(Service::class.java)
+    assertThat(namedBean.name).isEqualTo("myService")
+  }
+
+  @Test
   fun `findClasses default helper method is reachable`() {
     assertThatThrownBy {
       Class.forName("de.denktmit.wicket.spring.ClasspathUtilKt")

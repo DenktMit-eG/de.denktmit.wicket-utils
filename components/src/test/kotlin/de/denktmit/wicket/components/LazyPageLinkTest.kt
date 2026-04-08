@@ -13,4 +13,20 @@ class LazyPageLinkTest : WicketTestBase() {
 
     assertThat(link.id).isEqualTo("lazy")
   }
+
+  @Test
+  fun `pageClass lambda returns expected class`() {
+    val link = LazyPageLink("lazy", pageClass = { WrapperTestPage::class.java }, parameters = { PageParameters() })
+
+    assertThat(link.pageClass()).isEqualTo(WrapperTestPage::class.java)
+  }
+
+  @Test
+  fun `parameters lambda returns PageParameters`() {
+    val params = PageParameters().add("key", "value")
+    val link = LazyPageLink("lazy", pageClass = { WrapperTestPage::class.java }, parameters = { params })
+
+    assertThat(link.parameters()).isEqualTo(params)
+    assertThat(link.parameters().get("key").toString()).isEqualTo("value")
+  }
 }

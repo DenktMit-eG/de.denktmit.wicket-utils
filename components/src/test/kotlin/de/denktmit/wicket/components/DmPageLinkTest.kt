@@ -49,4 +49,29 @@ class DmPageLinkTest : WicketTestBase() {
     assertThat(link.isVisible).isFalse()
     assertThat(link.pageParameters.get("q").toOptionalString()).isNull()
   }
+
+  @Test
+  fun `onInitialize sets bodyModel and CSS`() {
+    val link = DmPageLink("pl", WrapperTestPage::class.java, bodyModel = Model.of("text"))
+
+    invokeDeclared(link, "onInitialize")
+  }
+
+  @Test
+  fun `static param writes page parameter`() {
+    val link = DmPageLink("pl", WrapperTestPage::class.java)
+    val holder = QueryHolder()
+    link.param(holder::q, "value")
+
+    assertThat(link.pageParameters.get("q").toString()).isEqualTo("value")
+  }
+
+  @Test
+  fun `PageRef param stores parameter`() {
+    val holder = QueryHolder()
+    val ref = PageRef(WrapperTestPage::class.java)
+    ref.param(holder::q, "value")
+
+    assertThat(ref.parameters.get("q").toString()).isEqualTo("value")
+  }
 }

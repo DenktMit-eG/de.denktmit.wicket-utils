@@ -1,5 +1,6 @@
 package de.denktmit.wicket.components
 
+import de.denktmit.wicket.components.behavior.DisabledBehavior
 import de.denktmit.wicket.components.component.DmLabel
 import org.apache.wicket.markup.ComponentTag
 import org.apache.wicket.markup.parser.XmlTag
@@ -28,5 +29,41 @@ class DmLabelTest : WicketTestBase() {
 
     assertThat(label.isVisible).isFalse()
     assertThat(tag.attributes.getString("data-test")).isEqualTo("ok")
+  }
+
+  @Test
+  fun `onInitialize adds CSS`() {
+    val label = DmLabel("l", Model.of("x"))
+
+    invokeDeclared(label, "onInitialize")
+
+    assertThat(label.behaviors).isNotEmpty
+  }
+
+  @Test
+  fun `string value constructor`() {
+    val label = DmLabel("l", "text")
+
+    assertThat(label.defaultModelObjectAsString).isEqualTo("text")
+  }
+
+  @Test
+  fun `operator unaryPlus adds behavior`() {
+    val label = DmLabel("l", Model.of("x")) {
+      +DisabledBehavior()
+    }
+
+    invokeDeclared(label, "onInitialize")
+
+    assertThat(label.behaviors.filterIsInstance<DisabledBehavior>()).isNotEmpty
+  }
+
+  @Test
+  fun `onConfigure without visible does not change visibility`() {
+    val label = DmLabel("l", Model.of("x"))
+
+    invokeDeclared(label, "onConfigure")
+
+    assertThat(label.isVisible).isTrue()
   }
 }

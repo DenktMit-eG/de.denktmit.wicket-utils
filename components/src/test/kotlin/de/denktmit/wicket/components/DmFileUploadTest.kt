@@ -12,4 +12,14 @@ class DmFileUploadTest : WicketTestBase() {
 
     assertThat(upload.id).isEqualTo("fu")
   }
+
+  @Test
+  fun `onInitialize adds CSS classes and calls init`() {
+    var initCalled = false
+    val upload = DmFileUpload("fu") { initCalled = true }
+    invokeDeclared(upload, "onInitialize")
+
+    assertThat(initCalled).isTrue()
+    assertThat(upload.behaviors).isNotEmpty
+  }
 }

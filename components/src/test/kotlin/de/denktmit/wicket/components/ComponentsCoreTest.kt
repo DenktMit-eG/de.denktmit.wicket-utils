@@ -128,4 +128,83 @@ class ComponentsCoreTest : WicketTestBase() {
     verify(exactly = 1) { componentVisit.stop(label) }
     verify(exactly = 1) { pathVisit.stop(any()) }
   }
+
+  @Test
+  fun `visitors skip non-matching ids`() {
+    val label = Label("other", "txt")
+    val componentVisit = mockk<IVisit<org.apache.wicket.Component>>(relaxed = true)
+    val pathVisit = mockk<IVisit<String>>(relaxed = true)
+
+    ComponentVisitor("target").component(label, componentVisit)
+    PathVisitor<Label, String>("target").component(label, pathVisit)
+
+    verify(exactly = 0) { componentVisit.stop(any()) }
+    verify(exactly = 0) { pathVisit.stop(any()) }
+  }
+
+  @Test
+  fun `disabled behavior with disabledIf true returns attribute value`() {
+    val disabledBehavior = DisabledBehavior { true }
+
+    val result = invokeProtected(disabledBehavior, "newValue", null, "disabled")
+
+    assertThat(result).isEqualTo("disabled")
+  }
+
+  @Test
+  fun `readonly behavior with readonlyIf false returns REMOVE`() {
+    val readonlyBehavior = ReadonlyBehavior { false }
+
+    val result = invokeProtected(readonlyBehavior, "newValue", null, "true")
+
+    assertThat(result).isEqualTo(org.apache.wicket.AttributeModifier.VALUELESS_ATTRIBUTE_REMOVE)
+  }
+
+  @Test
+  fun `css class remover with null currentValue returns empty`() {
+    val remover = CssClassRemover("my-class")
+
+    val result = invokeProtected(remover, "newValue", null, "my-class")
+
+    assertThat(result as String).isEmpty()
+  }
+
+  @Test
+  fun `disabled extension ClassAttributeModifier adds disabled class`() {
+    val label = Label("label", "text")
+    label.disabled { true }
+
+    val classModifier = label.behaviors.filterNot { it is DisabledBehavior }.first()
+    val updated = invokeDeclared(classModifier, "update", mutableSetOf("existing")) as Set<*>
+
+    assertThat(updated).contains("disabled")
+  }
+
+  @Test
+  fun `addCssClass ClassAttributeModifier adds class names`() {
+    val label = Label("label", "text")
+    label.addCssClass("foo", "bar")
+
+    val classModifier = label.behaviors.first()
+    val updated = invokeDeclared(classModifier, "update", mutableSetOf<String>()) as Set<*>
+
+    assertThat(updated).contains("foo", "bar")
+  }
+
+  @Test
+  fun `DmComponent onInitialize adds CSS`() {
+    val component = DmComponent("cmp")
+    invokeDeclared(component, "onInitialize")
+
+    assertThat(component.behaviors).isNotEmpty
+  }
+
+  @Test
+  fun `readonly behavior with readonlyIf true returns value`() {
+    val readonlyBehavior = ReadonlyBehavior { true }
+
+    val result = invokeProtected(readonlyBehavior, "newValue", null, "true")
+
+    assertThat(result).isEqualTo("true")
+  }
 }

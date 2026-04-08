@@ -7,6 +7,7 @@ import org.apache.wicket.protocol.ws.api.message.ConnectedMessage
 import org.apache.wicket.protocol.ws.api.message.IWebSocketPushMessage
 import org.apache.wicket.protocol.ws.api.message.TextMessage
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatCode
 import org.junit.jupiter.api.Test
 
 class DmWebSocketBehaviorTest : WicketTestBase() {
@@ -37,5 +38,16 @@ class DmWebSocketBehaviorTest : WicketTestBase() {
     assertThat(connected).isTrue()
     assertThat(pushed).isTrue()
     assertThat(messaged).isTrue()
+  }
+
+  @Test
+  fun `null callbacks do not throw`() {
+    val behavior = DmWebSocketBehavior()
+
+    assertThatCode {
+      invokeDeclared(behavior, "onConnect", mockk<ConnectedMessage>(relaxed = true))
+      invokeDeclared(behavior, "onPush", mockk<WebSocketRequestHandler>(relaxed = true), mockk<IWebSocketPushMessage>(relaxed = true))
+      invokeDeclared(behavior, "onMessage", mockk<WebSocketRequestHandler>(relaxed = true), mockk<TextMessage>(relaxed = true))
+    }.doesNotThrowAnyException()
   }
 }

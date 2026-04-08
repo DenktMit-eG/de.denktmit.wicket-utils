@@ -42,4 +42,21 @@ class KTypeUtilsBranchesTest {
     assertThatThrownBy { type.toClass<Any>() }
       .isInstanceOfAny(IllegalArgumentException::class.java, UnsupportedOperationException::class.java)
   }
+
+  @Test
+  fun `toClass resolves nullable type via KClass`() {
+    val result = kotlin.reflect.typeOf<String?>().toClass<String>()
+
+    assertThat(result).isEqualTo(String::class.java)
+  }
+
+  @Test
+  fun `toClass resolves generic type parameter with explicit upper bound`() {
+    class BoundedHolder<T : Comparable<T>>
+
+    val typeParam = BoundedHolder::class.typeParameters.first().upperBounds.first()
+    val result = typeParam.toClass<Comparable<*>>()
+
+    assertThat(result).isEqualTo(Comparable::class.java)
+  }
 }

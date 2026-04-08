@@ -198,6 +198,37 @@ class ContainersAndValidationTest : WicketTestBase() {
   }
 
   @Test
+  fun `feedback panel INFO UNDEFINED and else CSS levels`() {
+    val panel = ExposedFeedbackPanel("fb")
+
+    assertThat(panel.css(FeedbackMessage(panel, "info", FeedbackMessage.INFO))).isEqualTo("alert alert-info")
+    assertThat(panel.css(FeedbackMessage(panel, "undef", FeedbackMessage.UNDEFINED))).isEqualTo("alert alert-light")
+    assertThat(panel.css(FeedbackMessage(panel, "debug", FeedbackMessage.DEBUG))).contains("alert")
+  }
+
+  @Test
+  fun `feedback panel onInitialize and enableAjax`() {
+    val panel = DmFeedbackPanel("fb")
+    invokeDeclared(panel, "onInitialize")
+    panel.enableAjax()
+
+    assertThat(panel.outputMarkupId).isTrue()
+    assertThat(panel.outputMarkupPlaceholderTag).isTrue()
+  }
+
+  @Test
+  fun `feedback panel constructor with filter`() {
+    val panel = DmFeedbackPanel("fb") {}
+    assertThat(panel.id).isEqualTo("fb")
+  }
+
+  @Test
+  fun `TableGroup vararg constructor`() {
+    val group = DmGroupTableContainer.TableGroup("G", Row("A"), Row("B"))
+    assertThat(group.rows).hasSize(2)
+  }
+
+  @Test
   fun `page annotation and params contract are available`() {
     val annotation = AnnotatedPage::class.java.getAnnotation(MountPage::class.java)
     val params = TestPageParams()
@@ -205,5 +236,15 @@ class ContainersAndValidationTest : WicketTestBase() {
     assertThat(annotation.path).isEqualTo("/test")
     assertThat(annotation.deployment).isFalse()
     assertThat(params.pp).isNotNull
+  }
+
+  @Test
+  fun `feedback panel init lambda is called`() {
+    var initCalled = false
+    val panel = DmFeedbackPanel("fb", init = { initCalled = true })
+
+    invokeDeclared(panel, "onInitialize")
+
+    assertThat(initCalled).isTrue()
   }
 }
