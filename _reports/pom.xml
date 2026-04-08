@@ -44,11 +44,27 @@
             <phase>none</phase>
           </execution>
           <execution>
+            <id>prepare-agent-integration</id>
+            <phase>none</phase>
+          </execution>
+          <execution>
+            <id>merge</id>
+            <phase>none</phase>
+          </execution>
+          <execution>
             <id>report</id>
             <phase>none</phase>
           </execution>
           <execution>
-            <id>report-aggregate</id>
+            <id>report-integration</id>
+            <phase>none</phase>
+          </execution>
+          <execution>
+            <id>report-merged</id>
+            <phase>none</phase>
+          </execution>
+          <execution>
+            <id>aggregate-unit</id>
             <goals>
               <goal>report-aggregate</goal>
             </goals>
@@ -56,8 +72,34 @@
             <configuration>
               <dataFileIncludes>
                 <dataFileInclude>**/jacoco.exec</dataFileInclude>
+              </dataFileIncludes>
+              <outputDirectory>${project.reporting.outputDirectory}/jacoco-aggregate-unit</outputDirectory>
+            </configuration>
+          </execution>
+          <execution>
+            <id>aggregate-it</id>
+            <goals>
+              <goal>report-aggregate</goal>
+            </goals>
+            <phase>verify</phase>
+            <configuration>
+              <dataFileIncludes>
                 <dataFileInclude>**/jacoco-it.exec</dataFileInclude>
               </dataFileIncludes>
+              <outputDirectory>${project.reporting.outputDirectory}/jacoco-aggregate-it</outputDirectory>
+            </configuration>
+          </execution>
+          <execution>
+            <id>aggregate-merged</id>
+            <goals>
+              <goal>report-aggregate</goal>
+            </goals>
+            <phase>verify</phase>
+            <configuration>
+              <dataFileIncludes>
+                <dataFileInclude>**/jacoco-merged.exec</dataFileInclude>
+              </dataFileIncludes>
+              <outputDirectory>${project.reporting.outputDirectory}/jacoco-aggregate</outputDirectory>
             </configuration>
           </execution>
         </executions>
