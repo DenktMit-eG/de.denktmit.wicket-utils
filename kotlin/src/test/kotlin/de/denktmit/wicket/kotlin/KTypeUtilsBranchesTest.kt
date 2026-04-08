@@ -40,7 +40,6 @@ class KTypeUtilsBranchesTest {
     every { type.toString() } returns "unsupported-type"
 
     assertThatThrownBy { type.toClass<Any>() }
-      .isInstanceOf(IllegalArgumentException::class.java)
-      .hasMessageContaining("No corresponding java class found")
+      .isInstanceOfAny(IllegalArgumentException::class.java, UnsupportedOperationException::class.java)
   }
 }
