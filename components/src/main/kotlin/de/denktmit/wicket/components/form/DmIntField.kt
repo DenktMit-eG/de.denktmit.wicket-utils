@@ -10,13 +10,18 @@ import org.apache.wicket.model.IModel
 import org.apache.wicket.util.convert.IConverter
 import org.apache.wicket.util.convert.converter.IntegerConverter
 
+/**
+ * Integer input; the model may hold null for "not set", which an optional field renders empty and reads back
+ * as null; `out` lets a page pass a nullable or a non-null model (the component works on the erased type).
+ */
+@Suppress("UNCHECKED_CAST")
 open class DmIntField(
     id: String,
-    model: IModel<Int>? = null,
+    model: IModel<out Int?>? = null,
     val size: Int = 100,
     @Transient
   val init: DmIntField.() -> Unit = {},
-) : NumberTextField<Int>(id, model) {
+) : NumberTextField<Int>(id, model as IModel<Int>?) {
   operator fun Behavior.unaryPlus() {
     this@DmIntField.add(this)
   }
