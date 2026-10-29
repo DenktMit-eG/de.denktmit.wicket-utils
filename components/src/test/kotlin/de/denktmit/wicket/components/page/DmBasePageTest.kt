@@ -44,6 +44,7 @@ class DmBasePageTest : WidgetTestBase() {
     assertThat(html).contains("Body").contains("Saved")
     assertThat(tag("feedback").getAttribute("class")).contains("dm-feedback")
     assertThat(tag("loading").getAttribute("class")).contains("dm-loading-indicator-page")
+    assertThat(tag("notifications").getAttribute("class")).contains("dm-notifications")
     tester.assertNoErrorMessage()
   }
 }

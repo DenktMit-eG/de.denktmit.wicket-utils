@@ -3,6 +3,7 @@ package de.denktmit.wicket.components.page
 import de.denktmit.wicket.components.addCssClass
 import de.denktmit.wicket.components.feedback.DmFeedbackPanel
 import de.denktmit.wicket.components.overlay.DmLoadingIndicator
+import de.denktmit.wicket.components.overlay.DmNotifications
 import de.denktmit.wicket.components.resource.DmResources
 import org.apache.wicket.AttributeModifier
 import org.apache.wicket.markup.head.CssHeaderItem
@@ -20,8 +21,8 @@ import org.apache.wicket.util.string.Strings
 /**
  * The page every application page extends (requirement K.103): `<html lang>` from the session locale, the title
  * from [title], the base sheet with tokens and primitives, the catalogue's own sheets as the widgets contribute them,
- * the feedback panel ([feedback]), the page-wide loading indicator ([loadingIndicator]) and `<wicket:child/>` for
- * the content. An application adds its own sheet through [styleSheets] and its navigation in its own base page.
+ * the feedback panel ([feedback]), the page-wide loading indicator ([loadingIndicator]), the notifications region
+ * ([notifications]) and `<wicket:child/>` for the content. An application adds its own sheet through [styleSheets] and its navigation in its own base page.
  */
 abstract class DmBasePage
 @JvmOverloads
@@ -43,6 +44,10 @@ constructor(
   lateinit var loadingIndicator: DmLoadingIndicator
     private set
 
+  /** The notifications region at the top right; `notifications.notify(text, tone, target)` after an action. */
+  lateinit var notifications: DmNotifications
+    private set
+
   override fun onInitialize() {
     super.onInitialize()
     +TransparentWebMarkupContainer("html").apply { add(AttributeModifier.replace("lang", Model.of(languageTag()))) }
@@ -52,6 +57,8 @@ constructor(
     loadingIndicator = DmLoadingIndicator("loading")
     loadingIndicator.addCssClass("dm-loading-indicator-page")
     +loadingIndicator
+    notifications = DmNotifications("notifications")
+    +notifications
   }
 
   override fun renderHead(response: IHeaderResponse) {
