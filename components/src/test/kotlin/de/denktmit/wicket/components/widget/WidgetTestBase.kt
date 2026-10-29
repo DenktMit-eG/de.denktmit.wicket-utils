@@ -25,7 +25,10 @@ import org.junit.jupiter.api.BeforeEach
  */
 abstract class WidgetTestBase {
 
-  class TestHomePage : WebPage()
+  class TestHomePage : WebPage(), IMarkupResourceStreamProvider {
+    override fun getMarkupResourceStream(container: MarkupContainer, containerClass: Class<*>): IResourceStream =
+      StringResourceStream("<html xmlns:wicket=\"http://wicket.apache.org\"><body><p>home</p></body></html>")
+  }
 
   class WidgetTestApplication : WebApplication() {
     override fun getHomePage(): Class<out Page> = TestHomePage::class.java

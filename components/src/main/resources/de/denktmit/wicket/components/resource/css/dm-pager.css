@@ -1,0 +1,9 @@
+.dm-pager { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s0); }
+.dm-pager-navigator { display: flex; align-items: center; gap: var(--s-3); }
+.dm-pager-navigator a, .dm-pager-navigator span, .dm-pager-navigator em { display: inline-flex; align-items: center; justify-content: center; min-inline-size: 2em; padding: var(--s-3) var(--s-2); border-radius: var(--radius); text-decoration: none; font-style: normal; }
+.dm-pager-navigator a:hover { background: var(--color-ground); }
+.dm-pager-navigator em > span, .dm-pager-navigator em > a { background: var(--color-accent); color: var(--color-accent-ink); font-weight: 600; }
+.dm-pager-total { color: var(--color-muted); }
+.dm-pager-sizes { display: inline-flex; gap: var(--s-3); }
+.dm-pager-size { padding: var(--s-3) var(--s-2); border-radius: var(--radius); text-decoration: none; }
+.dm-pager-size[aria-current="true"] { background: var(--color-ground); font-weight: 600; color: var(--color-ink); }

@@ -1,0 +1,14 @@
+.dm-tree, .dm-tree-table { display: block; }
+.dm-tree .tree-branch, .dm-tree .tree-subtree { list-style: none; }
+.dm-tree .tree-subtree { padding-inline-start: var(--s1); margin: 0; }
+.dm-tree .tree-node { display: flex; align-items: center; gap: var(--s-3); padding: var(--s-3) 0; }
+.dm-tree .tree-junction { display: none; }
+.dm-tree-toggle { display: inline-flex; inline-size: 1.4em; block-size: 1.4em; align-items: center; justify-content: center; border-radius: var(--radius); color: var(--color-muted); }
+.dm-tree-toggle:hover { background: var(--color-ground); }
+[aria-expanded="true"] > .dm-tree-toggle .icon { transform: rotate(90deg); }
+.dm-tree-label { display: inline-flex; align-items: center; gap: var(--s-3); padding: var(--s-3) var(--s-2); border-radius: var(--radius); text-decoration: none; color: var(--color-ink); }
+.dm-tree-label:hover { background: var(--color-ground); }
+.dm-tree-selected > .dm-tree-label, .dm-tree-label[aria-selected="true"] { background: var(--color-accent); color: var(--color-accent-ink); }
+.dm-tree-check { accent-color: var(--color-accent); }
+[data-dm-tree-node][draggable="true"] { cursor: grab; }
+.dm-tree-drop-over > .dm-tree-label { outline: 2px dashed var(--color-accent); }

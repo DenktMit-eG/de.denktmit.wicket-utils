@@ -1,0 +1,2 @@
+.dm-anchor-target:target { outline: 3px solid var(--color-focus); outline-offset: 4px; animation: dm-anchor-fade 2s ease-out; scroll-margin-block-start: var(--s2); }
+@keyframes dm-anchor-fade { from { background: var(--color-focus); } to { background: transparent; } }

@@ -1,0 +1,3 @@
+.dm-breadcrumb-list { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-3); font-size: var(--s-1); }
+.dm-crumb + .dm-crumb::before { content: "/"; color: var(--color-muted); margin-inline-end: var(--s-3); }
+.dm-crumb [aria-current="page"] { color: var(--color-ink); font-weight: 600; }
