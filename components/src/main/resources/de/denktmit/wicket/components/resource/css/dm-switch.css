@@ -1,0 +1,11 @@
+.dm-switch, .dm-tri-state-checkbox { display: inline-block; }
+.dm-switch-control { display: inline-flex; align-items: center; gap: var(--s-2); cursor: pointer; }
+.dm-switch-label-start .dm-switch-control { flex-direction: row-reverse; }
+.dm-switch-input { position: absolute; opacity: 0; inline-size: 1px; block-size: 1px; }
+.dm-switch-track { position: relative; inline-size: 2.4em; block-size: 1.3em; border-radius: 1em; background: var(--color-line); transition: background 0.15s; flex-shrink: 0; }
+.dm-switch-track::after { content: ""; position: absolute; inset-block-start: 0.15em; inset-inline-start: 0.15em; inline-size: 1em; block-size: 1em; border-radius: 50%; background: var(--color-paper); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); transition: transform 0.15s; }
+.dm-switch-input:checked + .dm-switch-track { background: var(--color-accent); }
+.dm-switch-input:checked + .dm-switch-track::after { transform: translateX(1.1em); }
+.dm-switch-input:focus-visible + .dm-switch-track { outline: 3px solid var(--color-focus); outline-offset: 2px; }
+.dm-switch-input:disabled + .dm-switch-track { opacity: 0.5; }
+.dm-tristate-input { inline-size: 1.1em; block-size: 1.1em; accent-color: var(--color-accent); }

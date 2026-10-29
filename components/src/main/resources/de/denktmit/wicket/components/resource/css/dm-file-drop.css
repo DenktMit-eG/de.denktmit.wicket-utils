@@ -1,0 +1,7 @@
+.dm-file-drop { display: flex; flex-direction: column; gap: var(--s-2); }
+.dm-file-drop-zone { display: flex; flex-direction: column; align-items: center; gap: var(--s-2); padding: var(--s1); border: 2px dashed var(--color-line); border-radius: var(--radius); background: var(--color-paper); cursor: pointer; text-align: center; }
+.dm-file-drop-zone.dm-file-drop-over { border-color: var(--color-accent); background: var(--color-ground); }
+.dm-file-drop-zone .icon { width: 2em; height: 2em; color: var(--color-muted); }
+.dm-file-drop-chosen, .dm-file-drop-uploaded { display: flex; flex-direction: column; gap: var(--s-3); }
+.dm-file-drop-chosen:empty, .dm-file-drop-uploaded:empty { display: none; }
+.dm-file-drop-chosen li, .dm-file-drop-uploaded li { padding: var(--s-3) var(--s-2); background: var(--color-ground); border-radius: var(--radius); font-size: var(--s-1); }

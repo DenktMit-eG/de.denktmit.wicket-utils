@@ -1,0 +1,6 @@
+.dm-input-group { display: inline-flex; align-items: stretch; border: var(--border-thin) solid var(--color-line); border-radius: var(--radius); background: var(--color-paper); overflow: hidden; }
+.dm-input-group > input, .dm-input-group > select { border: 0; background: transparent; padding: var(--s-2); min-inline-size: 0; flex-grow: 1; }
+.dm-input-group > input:focus-visible { outline-offset: -3px; }
+.dm-input-group-affix { display: inline-flex; align-items: center; padding: 0 var(--s-2); background: var(--color-ground); color: var(--color-muted); white-space: nowrap; }
+.dm-input-group-button { display: inline-flex; align-items: stretch; }
+.dm-input-group-button > * { display: inline-flex; align-items: center; padding: 0 var(--s-1); border: 0; border-inline-start: var(--border-thin) solid var(--color-line); background: var(--color-ground); cursor: pointer; text-decoration: none; }

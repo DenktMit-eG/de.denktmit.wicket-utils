@@ -1,0 +1,10 @@
+.dm-rating-group { display: inline-flex; gap: 0.1em; }
+.dm-rating-step { position: relative; cursor: pointer; color: var(--color-line); font-size: var(--s2); line-height: 1; }
+.dm-rating-read-only .dm-rating-step { cursor: default; }
+.dm-rating-radio { position: absolute; opacity: 0; inline-size: 1px; block-size: 1px; }
+.dm-rating-lit { color: var(--color-warning); }
+.dm-rating-step:has(.dm-rating-radio:focus-visible) { outline: 3px solid var(--color-focus); outline-offset: 2px; border-radius: var(--radius); }
+.dm-rating-group:hover .dm-rating-step { color: var(--color-warning); }
+.dm-rating-step:hover ~ .dm-rating-step { color: var(--color-line); }
+.dm-rating-half { margin-inline-start: -0.55em; clip-path: inset(0 0 0 50%); }
+.dm-rating-symbol .icon { width: 1em; height: 1em; }

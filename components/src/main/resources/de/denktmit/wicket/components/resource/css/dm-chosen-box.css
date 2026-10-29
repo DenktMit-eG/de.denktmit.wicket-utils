@@ -1,0 +1,10 @@
+.dm-chosen-box { display: inline-block; min-inline-size: 16rem; }
+.dm-chosen-select { inline-size: 100%; min-block-size: 6em; }
+.dm-chosen-box[data-dm-enhanced] .dm-chosen-select { position: absolute; opacity: 0; inline-size: 1px; block-size: 1px; pointer-events: none; }
+.dm-chosen-chips { display: flex; flex-wrap: wrap; gap: var(--s-3); align-items: center; padding: var(--s-3); border: var(--border-thin) solid var(--color-line); border-radius: var(--radius); background: var(--color-paper); position: relative; }
+.dm-chosen-chip { display: inline-flex; align-items: center; gap: var(--s-3); padding: 0 var(--s-2); border-radius: 1em; background: var(--color-accent); color: var(--color-accent-ink); font-size: var(--s-1); }
+.dm-chosen-remove { border: 0; background: transparent; color: inherit; cursor: pointer; padding: 0; line-height: 1; }
+.dm-chosen-input { border: 0; background: transparent; flex-grow: 1; min-inline-size: 6em; padding: var(--s-3); }
+.dm-chosen-suggestions { position: absolute; inset-inline-start: 0; inset-block-start: 100%; z-index: 30; min-inline-size: 12rem; max-block-size: 14rem; overflow: auto; margin: 0; padding: var(--s-3); list-style: none; background: var(--color-paper); border: var(--border-thin) solid var(--color-line); border-radius: var(--radius); box-shadow: var(--shadow); }
+.dm-chosen-suggestion { padding: var(--s-3) var(--s-2); cursor: pointer; border-radius: var(--radius); }
+.dm-chosen-suggestion:hover, .dm-chosen-suggestion[aria-selected="true"] { background: var(--color-ground); }

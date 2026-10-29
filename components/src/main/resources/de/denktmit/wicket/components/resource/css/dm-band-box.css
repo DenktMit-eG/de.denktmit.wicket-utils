@@ -1,0 +1,6 @@
+.dm-band-box { position: relative; display: inline-flex; align-items: stretch; border: var(--border-thin) solid var(--color-line); border-radius: var(--radius); background: var(--color-paper); }
+.dm-band-box-display { border: 0; background: transparent; padding: var(--s-2); min-inline-size: 12rem; }
+.dm-band-box-popup { display: flex; align-items: stretch; }
+.dm-band-box-open { display: inline-flex; align-items: center; padding: 0 var(--s-2); cursor: pointer; list-style: none; background: var(--color-ground); border-inline-start: var(--border-thin) solid var(--color-line); }
+.dm-band-box-open::-webkit-details-marker { display: none; }
+.dm-band-box-panel { position: absolute; inset-inline-start: 0; inset-block-start: 100%; z-index: 30; min-inline-size: 100%; margin-block-start: var(--s-3); box-shadow: var(--shadow); }

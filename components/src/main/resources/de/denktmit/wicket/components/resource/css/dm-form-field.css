@@ -1,0 +1,7 @@
+.dm-form-field { display: flex; flex-direction: column; gap: var(--s-3); }
+.dm-form-field-label { font-weight: 600; }
+.dm-form-field-required > .dm-form-field-label::after { content: " *"; color: var(--color-danger); }
+.dm-form-field-help { color: var(--color-muted); }
+.dm-form-field-error { color: var(--color-danger); font-size: var(--s-1); }
+.dm-form-field-invalid input, .dm-form-field-invalid select, .dm-form-field-invalid textarea { border-color: var(--color-danger); }
+.dm-form-field input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]), .dm-form-field select, .dm-form-field textarea { padding: var(--s-2); border: var(--border-thin) solid var(--color-line); border-radius: var(--radius); background: var(--color-paper); max-inline-size: 100%; }

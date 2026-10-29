@@ -1,0 +1,3 @@
+.dm-color-field { display: inline-flex; align-items: center; gap: var(--s-2); }
+.dm-color-picker { inline-size: 2.4em; block-size: 2em; padding: 0; border: var(--border-thin) solid var(--color-line); border-radius: var(--radius); background: var(--color-paper); cursor: pointer; }
+.dm-color-text { font-family: var(--font-mono); padding: var(--s-2); border: var(--border-thin) solid var(--color-line); border-radius: var(--radius); }

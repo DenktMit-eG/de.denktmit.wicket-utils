@@ -1,0 +1,6 @@
+.dm-search-box { display: inline-flex; align-items: stretch; border: var(--border-thin) solid var(--color-line); border-radius: 2em; background: var(--color-paper); overflow: hidden; }
+.dm-search-input { border: 0; background: transparent; padding: var(--s-2) var(--s0); min-inline-size: 12rem; }
+.dm-search-input:focus-visible { outline-offset: -3px; }
+.dm-search-input::-webkit-search-cancel-button { appearance: none; }
+.dm-search-button { border: 0; background: transparent; padding: 0 var(--s-1); cursor: pointer; line-height: 0; color: var(--color-muted); }
+.dm-search-button:hover { color: var(--color-ink); background: var(--color-ground); }

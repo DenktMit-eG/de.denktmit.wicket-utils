@@ -1,0 +1,2 @@
+.dm-cascader { display: inline-flex; flex-wrap: wrap; gap: var(--s-2); }
+.dm-cascader-level { padding: var(--s-2); border: var(--border-thin) solid var(--color-line); border-radius: var(--radius); background: var(--color-paper); }

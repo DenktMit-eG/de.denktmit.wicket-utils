@@ -1,5 +1,6 @@
 package de.denktmit.wicket.components.widget
 
+import de.denktmit.wicket.components.resource.DmMessages
 import de.denktmit.wicket.components.session.DmSession
 import org.apache.wicket.Component
 import org.apache.wicket.Page
@@ -30,6 +31,11 @@ abstract class WidgetTestBase {
     override fun getHomePage(): Class<out Page> = TestHomePage::class.java
 
     override fun newSession(request: Request, response: Response): Session = DmSession(request)
+
+    override fun init() {
+      super.init()
+      DmMessages.install(this)
+    }
   }
 
   protected lateinit var tester: WicketTester

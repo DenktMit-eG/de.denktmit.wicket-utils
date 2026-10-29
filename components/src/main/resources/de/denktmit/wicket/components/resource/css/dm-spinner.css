@@ -1,0 +1,6 @@
+.dm-spinner { display: inline-flex; align-items: stretch; border: var(--border-thin) solid var(--color-line); border-radius: var(--radius); background: var(--color-paper); }
+.dm-spinner-input { border: 0; background: transparent; padding: var(--s-2); inline-size: 6em; text-align: center; -moz-appearance: textfield; }
+.dm-spinner-input::-webkit-outer-spin-button, .dm-spinner-input::-webkit-inner-spin-button { -webkit-appearance: none; }
+.dm-spinner-button { border: 0; background: var(--color-ground); padding: 0 var(--s-2); cursor: pointer; line-height: 0; display: none; }
+.dm-spinner[data-dm-enhanced] .dm-spinner-button { display: inline-flex; align-items: center; }
+.dm-spinner-button:hover { background: var(--color-line); }
