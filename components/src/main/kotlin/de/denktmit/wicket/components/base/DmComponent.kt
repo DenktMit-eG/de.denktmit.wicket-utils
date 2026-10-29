@@ -32,9 +32,9 @@ open class DmComponent(
 }
 
 
-context (Component)
+context(component: Component)
 operator fun Behavior.unaryPlus() {
-  this@Component.add(this)
+  component.add(this)
 }
 
 fun Component.enableAjax() {

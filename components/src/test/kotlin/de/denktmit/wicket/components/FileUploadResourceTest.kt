@@ -27,18 +27,21 @@ class FileUploadResourceTest : WicketTestBase() {
   fun `newResourceResponse processes multipart files and writes success response`() {
     val attrs = mockk<IResource.Attributes>()
     val request = mockk<ServletWebRequest>()
-    val multipart = mockk<MultipartServletWebRequest>()
     val response = mockk<WebResponse>(relaxed = true)
     val output = ByteArrayOutputStream()
     val item = mockk<FileItem<*>>(relaxed = true)
+    // a real subclass, not a mock: kotlin-reflect 2.4 cannot describe getFiles() (recursive generic FileItem<?>)
+    val multipart = object : MultipartServletWebRequest(tester.request, "") {
+      override fun parseFileParts() = Unit
+      override fun getFiles(): Map<String, List<FileItem<*>>> = mapOf("files" to listOf(item))
+      override fun getFile(fieldName: String): List<FileItem<*>>? = files[fieldName]
+    }
     var handled: List<FileItem<*>>? = null
     val resource = FileUploadResource("files") { handled = it }
     every { attrs.request } returns request
     every { attrs.response } returns response
     every { response.outputStream } returns output
     every { request.newMultipartWebRequest(any(), any()) } returns multipart
-    every { multipart.parseFileParts() } returns Unit
-    every { multipart.files } returns mapOf("files" to listOf(item))
 
     val rr = invokeDeclared(resource, "newResourceResponse", attrs) as org.apache.wicket.request.resource.AbstractResource.ResourceResponse
     rr.writeCallback.writeData(attrs)

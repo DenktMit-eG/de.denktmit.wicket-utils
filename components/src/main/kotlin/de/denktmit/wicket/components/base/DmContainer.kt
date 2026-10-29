@@ -36,7 +36,7 @@ open class DmContainer(
 
 
 /** Convenience extension to make use of `+SomeComponent(...)` instead of `add(SomeComponent(...))` */
-context (MarkupContainer)
+context(container: MarkupContainer)
 operator fun Component.unaryPlus() {
-  this@MarkupContainer.add(this@Component)
+  container.add(this)
 }

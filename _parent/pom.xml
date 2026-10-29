@@ -23,8 +23,8 @@
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
     <targetJdk>${java.version}</targetJdk>
-    <version.io.mockk.mockk-jvm>1.14.9</version.io.mockk.mockk-jvm>
-    <version.kotlin>2.2.21</version.kotlin>
+    <version.io.mockk.mockk-jvm>1.14.11</version.io.mockk.mockk-jvm>
+    <version.kotlin>2.4.21</version.kotlin>
     <version.org.apache.maven.plugins.maven-source-plugin>3.4.0</version.org.apache.maven.plugins.maven-source-plugin>
     <version.org.apache.maven.plugins.maven-surefire-plugin>3.5.4</version.org.apache.maven.plugins.maven-surefire-plugin>
     <version.org.apache.wicket>10.8.0</version.org.apache.wicket>
@@ -38,6 +38,14 @@
         <groupId>de.denktmit.wicket</groupId>
         <artifactId>dm-wicket-bom</artifactId>
         <version>${project.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <!-- Before the Boot BOM, so that every Kotlin artefact follows ${version.kotlin}, not the version Boot manages. -->
+      <dependency>
+        <groupId>org.jetbrains.kotlin</groupId>
+        <artifactId>kotlin-bom</artifactId>
+        <version>${version.kotlin}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -98,13 +106,6 @@
         <groupId>org.apache.wicket</groupId>
         <artifactId>wicket-tester</artifactId>
         <version>${version.org.apache.wicket}</version>
-        <scope>test</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.jetbrains.kotlin</groupId>
-        <artifactId>kotlin-bom</artifactId>
-        <version>${version.kotlin}</version>
-        <type>bom</type>
         <scope>test</scope>
       </dependency>
     </dependencies>
@@ -272,7 +273,6 @@
           <jvmTarget>${java.version}</jvmTarget>
           <args>
             <arg>-Xjsr305=strict</arg>
-            <arg>-Xcontext-receivers</arg>
             <arg>-java-parameters</arg>
           </args>
           <compilerPlugins>
