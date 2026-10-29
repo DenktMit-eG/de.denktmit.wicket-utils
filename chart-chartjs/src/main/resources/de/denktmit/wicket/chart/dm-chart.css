@@ -1,0 +1,5 @@
+.dm-chart-canvas { position: relative; block-size: var(--chart-height, 20rem); inline-size: 100%; }
+.dm-chart[data-dm-enhanced] .dm-chart-table { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.dm-chart-table { border-collapse: collapse; }
+.dm-chart-table th, .dm-chart-table td { padding: var(--s-3) var(--s-2); border-block-end: var(--border-thin) solid var(--color-line); text-align: start; }
+.dm-chart-tools { --space: var(--s-1); }

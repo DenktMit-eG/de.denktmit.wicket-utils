@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>de.denktmit.wicket</groupId>
+    <artifactId>dm-wicket-parent</artifactId>
+    <version>${revision}${sha1}${changelist}</version>
+    <relativePath>../_parent/pom.xml</relativePath>
+  </parent>
+  <artifactId>dm-wicket-map-leaflet</artifactId>
+  <name>DenktMit :: Wicket :: Map Leaflet</name>
+  <description>Leaflet binding of the map model, markers, shapes, layers and events over Leaflet from a webjar.</description>
+  <properties>
+    <dokka.phase>package</dokka.phase>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>de.denktmit.wicket</groupId>
+      <artifactId>dm-wicket-components</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.webjars</groupId>
+      <artifactId>leaflet</artifactId>
+      <version>1.9.4</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.wicket</groupId>
+      <artifactId>wicket-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>jakarta.servlet</groupId>
+      <artifactId>jakarta.servlet-api</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.wicket</groupId>
+      <artifactId>wicket-tester</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>de.denktmit.wicket</groupId>
+      <artifactId>dm-wicket-components</artifactId>
+      <version>${project.version}</version>
+      <type>test-jar</type>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  <build>
+    <resources>
+      <resource>
+        <filtering>false</filtering>
+        <directory>${basedir}/src/main/kotlin</directory>
+        <excludes>
+          <exclude>**/*.kt</exclude>
+        </excludes>
+      </resource>
+      <resource>
+        <filtering>false</filtering>
+        <directory>${basedir}/src/main/resources</directory>
+      </resource>
+    </resources>
+  </build>
+</project>

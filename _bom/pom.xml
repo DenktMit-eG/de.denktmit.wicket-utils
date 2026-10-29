@@ -33,6 +33,16 @@
         <artifactId>dm-wicket-spring</artifactId>
         <version>${project.version}</version>
       </dependency>
+      <dependency>
+        <groupId>de.denktmit.wicket</groupId>
+        <artifactId>dm-wicket-map-leaflet</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>de.denktmit.wicket</groupId>
+        <artifactId>dm-wicket-chart-chartjs</artifactId>
+        <version>${project.version}</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 </project>

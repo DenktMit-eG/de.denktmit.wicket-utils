@@ -16,6 +16,8 @@
     <module>../kotlin</module>
     <module>../model</module>
     <module>../spring</module>
+    <module>../map-leaflet</module>
+    <module>../chart-chartjs</module>
     <module>../_reports</module>
   </modules>
   <properties>
@@ -27,6 +29,7 @@
     <targetJdk>${java.version}</targetJdk>
     <version.io.mockk.mockk-jvm>1.14.11</version.io.mockk.mockk-jvm>
     <version.kotlin>2.4.21</version.kotlin>
+    <version.org.apache.maven.plugins.maven-jar-plugin>3.4.2</version.org.apache.maven.plugins.maven-jar-plugin>
     <version.org.apache.maven.plugins.maven-source-plugin>3.4.0</version.org.apache.maven.plugins.maven-source-plugin>
     <version.org.apache.maven.plugins.maven-surefire-plugin>3.5.4</version.org.apache.maven.plugins.maven-surefire-plugin>
     <version.org.apache.wicket>10.8.0</version.org.apache.wicket>
@@ -144,6 +147,11 @@
     <testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
     <pluginManagement>
       <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>${version.org.apache.maven.plugins.maven-jar-plugin}</version>
+        </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-source-plugin</artifactId>

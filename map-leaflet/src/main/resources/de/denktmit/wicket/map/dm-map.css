@@ -1,0 +1,3 @@
+.dm-map-canvas { block-size: var(--map-height, 24rem); inline-size: 100%; border: var(--border-thin) solid var(--color-line); border-radius: var(--radius); }
+.dm-map[data-dm-enhanced] .dm-map-list { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.dm-map-list { padding: var(--s-1); display: flex; flex-direction: column; gap: var(--s-3); }

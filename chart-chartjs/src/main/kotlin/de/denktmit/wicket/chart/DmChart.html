@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org">
+<body>
+<wicket:panel>
+  <div class="dm-chart-canvas" data-dm-chart-canvas hidden><canvas></canvas></div>
+  <p class="dm-chart-tools cluster" data-dm-chart-tools hidden><a href="#" download="chart.png" data-dm-chart-export>Export as image</a></p>
+  <table class="dm-chart-table" data-dm-chart-table>
+    <caption wicket:id="caption"></caption>
+    <thead><tr><th scope="col">Series</th><th wicket:id="heads" scope="col"><span wicket:id="head"></span></th></tr></thead>
+    <tbody><tr wicket:id="rows"><th wicket:id="name" scope="row"></th><td wicket:id="cells"><span wicket:id="cell"></span></td></tr></tbody>
+  </table>
+</wicket:panel>
+</body>
+</html>

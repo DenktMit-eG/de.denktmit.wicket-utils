@@ -1,0 +1,1 @@
+window.sample = "loaded";
