@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org">
+<body>
+<wicket:panel>
+  <details wicket:id="columnMenu" class="dm-table-column-menu">
+    <summary>Columns</summary>
+    <form wicket:id="columnsForm" class="dm-table-column-form stack stack-tight">
+      <label wicket:id="columnToggles" class="cluster"><input wicket:id="show" type="checkbox"/><span wicket:id="name"></span></label>
+      <button type="submit">Apply</button>
+    </form>
+  </details>
+  <div class="dm-table-scroll">
+    <table class="dm-table-grid">
+      <thead>
+        <tr wicket:id="headerGroups" class="dm-table-group-headers"><th wicket:id="group" scope="colgroup"></th></tr>
+        <tr>
+          <th wicket:id="selectHead" scope="col" class="dm-table-select-head"><span class="visually-hidden">Select</span></th>
+          <th wicket:id="detailHead" scope="col" class="dm-table-detail-head"><span class="visually-hidden">Details</span></th>
+          <th wicket:id="headers" scope="col" class="dm-table-header" data-dm-table-header><a wicket:id="sort" class="dm-table-sort"><span wicket:id="title"></span></a><span wicket:id="plainTitle"></span><span class="dm-table-resize" data-dm-table-resize aria-hidden="true"></span></th>
+        </tr>
+      </thead>
+      <tbody wicket:id="rows">
+        <tr wicket:id="groupRow" class="dm-table-group"><th wicket:id="groupTitle" scope="colgroup"></th></tr>
+        <tr wicket:id="row" class="dm-table-row">
+          <td class="dm-table-select-cell"><a wicket:id="select" class="dm-table-select"><span wicket:id="icon"></span></a></td>
+          <td class="dm-table-detail-cell"><a wicket:id="toggle" class="dm-table-toggle"><span wicket:id="icon"></span></a></td>
+          <td wicket:id="cells" class="dm-table-cell"><span wicket:id="cell"></span></td>
+        </tr>
+        <tr wicket:id="detailRow" class="dm-table-detail"><td wicket:id="detail"></td></tr>
+      </tbody>
+      <tfoot>
+        <tr wicket:id="totals" class="dm-table-totals"><td wicket:id="totalsSelect"></td><td wicket:id="totalsDetail"></td><td wicket:id="totalCells"><span wicket:id="total"></span></td></tr>
+      </tfoot>
+    </table>
+  </div>
+  <p wicket:id="empty" class="dm-table-empty"></p>
+  <div wicket:id="pager"></div>
+</wicket:panel>
+</body>
+</html>

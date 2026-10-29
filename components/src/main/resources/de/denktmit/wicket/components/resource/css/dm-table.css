@@ -1,0 +1,26 @@
+.dm-table-scroll { overflow-x: auto; }
+.dm-table-grid { border-collapse: collapse; inline-size: 100%; background: var(--color-paper); }
+.dm-table-grid th, .dm-table-grid td { padding: var(--s-2) var(--s-1); text-align: start; border-block-end: var(--border-thin) solid var(--color-line); vertical-align: top; }
+.dm-table-grid thead th { background: var(--color-ground); font-weight: 600; position: relative; white-space: nowrap; }
+.dm-table-group-headers th { text-align: center; border-block-end: 0; color: var(--color-muted); font-size: var(--s-1); }
+.dm-table-sort { text-decoration: none; color: inherit; }
+.dm-table-sort::after { content: " ↕"; color: var(--color-muted); }
+[aria-sort="ascending"] .dm-table-sort::after { content: " ↑"; color: var(--color-ink); }
+[aria-sort="descending"] .dm-table-sort::after { content: " ↓"; color: var(--color-ink); }
+.dm-table-resize { position: absolute; inset-block: 0; inset-inline-end: 0; inline-size: 6px; cursor: col-resize; }
+.dm-table-row[aria-selected="true"] { background: color-mix(in srgb, var(--color-accent) 12%, var(--color-paper)); }
+.dm-table-row[data-dm-table-row] { cursor: pointer; }
+.dm-table-select, .dm-table-toggle { display: inline-flex; inline-size: 1.4em; block-size: 1.4em; align-items: center; justify-content: center; border: var(--border-thin) solid var(--color-line); border-radius: var(--radius); color: transparent; text-decoration: none; }
+.dm-table-select[aria-checked="true"] { color: var(--color-accent-ink); background: var(--color-accent); border-color: var(--color-accent); }
+.dm-table-toggle { color: var(--color-muted); border: 0; }
+.dm-table-toggle[aria-expanded="true"] .icon { transform: rotate(90deg); }
+.dm-table-select-cell, .dm-table-detail-cell, .dm-table-select-head, .dm-table-detail-head { inline-size: 2em; }
+.dm-table-group th { background: var(--color-ground); font-weight: 600; text-align: start; }
+.dm-table-detail td { background: var(--color-ground); padding: var(--s0); }
+.dm-table-totals td { font-weight: 600; border-block-start: 2px solid var(--color-line); }
+.dm-table-frozen { position: sticky; inset-inline-start: 0; background: var(--color-paper); z-index: 1; box-shadow: 1px 0 0 var(--color-line); }
+.dm-table-empty { color: var(--color-muted); padding: var(--s0); text-align: center; }
+.dm-table-column-menu { align-self: flex-end; }
+.dm-table-column-menu > summary { cursor: pointer; color: var(--color-muted); }
+.dm-table-column-form { padding: var(--s-1); }
+.dm-table .dm-pager { margin-block-start: var(--s-1); }
