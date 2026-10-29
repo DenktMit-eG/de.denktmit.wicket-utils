@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org">
+<body>
+<wicket:panel>
+  <div class="dm-portal-columns">
+    <div wicket:id="columns" class="dm-portal-column stack" data-dm-portal-column>
+      <div wicket:id="panels" class="dm-portal-panel" draggable="true">
+        <div class="dm-portal-moves cluster" data-dm-portal-moves>
+          <a wicket:id="up" class="dm-portal-move" aria-label="Move up"><span wicket:id="icon"></span></a>
+          <a wicket:id="down" class="dm-portal-move" aria-label="Move down"><span wicket:id="icon"></span></a>
+          <a wicket:id="prev" class="dm-portal-move" aria-label="Move to previous column"><span wicket:id="icon"></span></a>
+          <a wicket:id="next" class="dm-portal-move" aria-label="Move to next column"><span wicket:id="icon"></span></a>
+        </div>
+        <div wicket:id="panel"></div>
+      </div>
+    </div>
+  </div>
+</wicket:panel>
+</body>
+</html>

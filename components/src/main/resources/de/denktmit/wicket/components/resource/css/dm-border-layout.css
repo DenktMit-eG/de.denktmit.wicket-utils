@@ -1,0 +1,9 @@
+.dm-border-layout { display: flex; flex-direction: column; gap: var(--s-1); min-block-size: 100%; }
+.dm-border-layout-middle { display: flex; flex-wrap: wrap; gap: var(--s-1); flex-grow: 1; }
+.dm-region { min-inline-size: 0; }
+.dm-region-start, .dm-region-end { flex: 0 1 15rem; }
+.dm-region-centre { flex: 1 1 50%; }
+.dm-region-title { font-weight: 600; cursor: pointer; padding: var(--s-2); }
+.dm-region-resizable { resize: horizontal; overflow: auto; }
+.dm-region-top.dm-region-resizable, .dm-region-bottom.dm-region-resizable { resize: vertical; }
+details.dm-region:not([open]) { flex-basis: auto; }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org">
+<body>
+<wicket:panel>
+  <dialog wicket:id="dialog" class="dm-window-dialog box stack">
+    <header class="dm-window-header cluster" data-dm-window-handle>
+      <h2 wicket:id="title" class="dm-window-title"></h2>
+      <a wicket:id="close" class="dm-window-close" aria-label="Close" data-dm-window-close><span wicket:id="icon"></span></a>
+    </header>
+    <div class="dm-window-body stack"><div wicket:id="content"></div></div>
+    <footer wicket:id="footer" class="dm-window-footer cluster"><span wicket:id="actions"></span></footer>
+  </dialog>
+</wicket:panel>
+</body>
+</html>

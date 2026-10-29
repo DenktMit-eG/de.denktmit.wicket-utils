@@ -1,0 +1,11 @@
+.dm-split-layout { display: flex; min-block-size: 10rem; }
+.dm-split-vertical { flex-direction: column; }
+.dm-split-pane { overflow: auto; min-inline-size: 0; min-block-size: 0; }
+.dm-split-first { flex: 0 0 var(--first-size, 50%); resize: horizontal; }
+.dm-split-vertical .dm-split-first { resize: vertical; }
+.dm-split-layout[data-dm-enhanced] .dm-split-first { resize: none; }
+.dm-split-second { flex: 1 1 0; }
+.dm-split-pane[hidden] { display: none; }
+.dm-split-divider { flex: 0 0 auto; display: flex; align-items: center; justify-content: center; gap: var(--s-3); background: var(--color-line); inline-size: 0.5rem; cursor: col-resize; }
+.dm-split-vertical .dm-split-divider { inline-size: auto; block-size: 0.5rem; cursor: row-resize; flex-direction: row; }
+.dm-split-collapse { border: 0; background: var(--color-paper); border-radius: var(--radius); padding: 0; line-height: 0; cursor: pointer; }

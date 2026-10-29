@@ -1,0 +1,5 @@
+.dm-accordion { display: flex; flex-direction: column; gap: var(--s-2); }
+.dm-accordion-section { border: var(--border-thin) solid var(--color-line); border-radius: var(--radius); background: var(--color-paper); }
+.dm-accordion-title { display: flex; align-items: center; gap: var(--s-2); padding: var(--s-1) var(--s0); cursor: pointer; font-weight: 600; }
+.dm-accordion-section[open] > .dm-accordion-title { border-block-end: var(--border-thin) solid var(--color-line); }
+.dm-accordion-panel { padding: var(--s0); }

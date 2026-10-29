@@ -1,0 +1,9 @@
+.dm-portal-columns { display: flex; flex-wrap: wrap; gap: var(--s0); align-items: flex-start; }
+.dm-portal-column { flex: 1 1 15rem; min-block-size: 4rem; padding: var(--s-2); border: var(--border-thin) dashed transparent; border-radius: var(--radius); }
+.dm-portal-column.dm-portal-over { border-color: var(--color-accent); background: var(--color-ground); }
+.dm-portal-panel { position: relative; }
+.dm-portal-panel[draggable="true"] { cursor: grab; }
+.dm-portal-panel.dm-portal-dragging { opacity: 0.5; }
+.dm-portal-moves { position: absolute; inset-inline-end: var(--s-2); inset-block-start: var(--s-2); z-index: 2; --space: var(--s-3); }
+.dm-portal-layout[data-dm-enhanced] .dm-portal-moves { display: none; }
+.dm-portal-move { line-height: 0; padding: var(--s-3); border-radius: var(--radius); background: var(--color-paper); color: var(--color-muted); }

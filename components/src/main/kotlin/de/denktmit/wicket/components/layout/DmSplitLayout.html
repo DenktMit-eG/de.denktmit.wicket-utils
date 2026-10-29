@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org">
+<body>
+<wicket:panel>
+  <div wicket:id="firstPane" class="dm-split-pane dm-split-first" data-dm-split-pane="first"><div wicket:id="first"></div></div>
+  <div wicket:id="divider" class="dm-split-divider" role="separator" data-dm-split-divider tabindex="0">
+    <button wicket:id="collapseFirst" type="button" class="dm-split-collapse" data-dm-split-collapse="first" aria-label="Collapse first pane" aria-expanded="true" hidden><span wicket:id="icon"></span></button>
+    <button wicket:id="collapseSecond" type="button" class="dm-split-collapse" data-dm-split-collapse="second" aria-label="Collapse second pane" aria-expanded="true" hidden><span wicket:id="icon"></span></button>
+  </div>
+  <div wicket:id="secondPane" class="dm-split-pane dm-split-second" data-dm-split-pane="second"><div wicket:id="second"></div></div>
+</wicket:panel>
+</body>
+</html>

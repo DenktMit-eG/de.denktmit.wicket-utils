@@ -1,0 +1,13 @@
+.dm-window-dialog { --space: 0; padding: 0; min-inline-size: min(28rem, 90vw); max-inline-size: 90vw; max-block-size: 90vh; overflow: auto; }
+dialog.dm-window-dialog { border: var(--border-thin) solid var(--color-line); border-radius: var(--radius); box-shadow: var(--shadow); color: var(--color-ink); background: var(--color-paper); margin: auto; }
+dialog.dm-window-dialog:not([open]) { display: none; }
+dialog.dm-window-dialog[open] { position: fixed; inset: 0; z-index: 800; }
+dialog.dm-window-dialog::backdrop { background: rgba(0, 0, 0, 0.4); }
+.dm-window-resizable { resize: both; }
+.dm-window-header { justify-content: space-between; padding: var(--s-1) var(--s0); border-block-end: var(--border-thin) solid var(--color-line); cursor: move; user-select: none; }
+section .dm-window-header { cursor: default; }
+.dm-window-title { font-size: var(--s1); }
+.dm-window-close { line-height: 0; padding: var(--s-3); border-radius: var(--radius); color: var(--color-muted); }
+.dm-window-close:hover { background: var(--color-ground); color: var(--color-ink); }
+.dm-window-body { padding: var(--s0); }
+.dm-window-footer { justify-content: flex-end; padding: var(--s-1) var(--s0); border-block-start: var(--border-thin) solid var(--color-line); }
