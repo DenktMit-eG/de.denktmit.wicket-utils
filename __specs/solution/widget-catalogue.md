@@ -214,8 +214,11 @@ catalogue is complete (Q4).
   (the `textarea` with the source) and the sanitiser are the same whatever
   the editor, and a library binding can replace the script part later
   without touching the model; decided alone on 2026-10-29 during the build.
-- Phase 6 bindings (97 to 99, 101) were not started in the first build;
-  the document viewer (100) is in the core, as decided.
+- Phase 6 in the first build: the map model with the Leaflet binding
+  (`dm-wicket-map-leaflet`) and the chart model with the Chart.js binding
+  (`dm-wicket-chart-chartjs`), each a module with its webjar served through
+  `WebjarResourceReference`; the document viewer (100) is in the core. The
+  other bindings follow the same cut.
 - Spreadsheet project for 101: candidates in the plan; the first binding
   is chosen when a product needs it.
 - Module cut: `components` keeps the core catalogue (C to I, K); embedded
@@ -226,8 +229,10 @@ catalogue is complete (Q4).
 
 ## Deferred
 
-- Map, chart, diagram and spreadsheet bindings (97 to 99, 101): modules of
-  their own with webjars, after the walk-through of the first build.
+- The MapLibre GL and OpenLayers map bindings, the ECharts, Plotly and D3
+  chart bindings, the JointJS diagram canvas and the spreadsheet binding
+  (97 to 99, 101): modules of their own with webjars, after the walk-through
+  of the first build; the models exist.
 - Split and border layout sizes reported to the model, table column widths
   and order persisted: the browser keeps them for now (16, 13, 59).
 - Captcha beyond the simple self-made challenge (56): an application plugs

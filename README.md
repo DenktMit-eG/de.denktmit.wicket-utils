@@ -88,6 +88,7 @@ and `__specs/solution/widget-catalogue.md`; the sibling project
 | Collections | `ListDataSource`, `DmColumn`, `DmTable`, `DmList`, `DmLargeList`, `DmSelectionModel` |
 | Display | `DmText`, `DmHtml`, `DmImageMap`, `DmProgress`, `DmBadge`, `DmTag`, `DmAvatar`, `DmAudio`, `DmVideo`, `DmEmptyState`, `DmOrganigram`, `DmFisheye`, `DmDocumentViewer` |
 | Overlays | `DmFeedbackPanel`, `DmNotifications`, `DmMessageBox`, `DmPopup`, `TooltipBehavior`, `DmCoachMark` |
+| Embedded | `MapModel` with `DmMap` (module `dm-wicket-map-leaflet`), `ChartModel` with `DmChart` (module `dm-wicket-chart-chartjs`), `WebjarResourceReference` |
 | Behaviours | `RefreshTimer`, `DmWebSocketBehavior`, `KeyboardShortcutBehavior`, `DragSourceBehavior`/`DropTargetBehavior`, `Focus.scrollTo`/`focus`, `ConfirmBehavior` |
 
 An application returns `DmSession` from `newSession` and calls
