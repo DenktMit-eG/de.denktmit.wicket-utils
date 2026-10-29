@@ -3,6 +3,8 @@ package de.denktmit.wicket.components.table
 import java.io.Serializable
 import java.util.concurrent.atomic.AtomicInteger
 
+/** Self-typed row data: `RD` is the implementing class itself, so the casts below only restore what the type bound states. */
+@Suppress("UNCHECKED_CAST")
 interface TableRowData<RD : TableRowData<RD>> : Serializable {
   val id: String
     get() = idSeed.addAndGet(1).toString()

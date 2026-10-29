@@ -130,6 +130,12 @@
       <artifactId>junit-jupiter</artifactId>
       <scope>test</scope>
     </dependency>
+    <!-- Wicket logs through SLF4J; without a provider every test JVM warns about the missing one. -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-nop</artifactId>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
   <build>
     <sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
@@ -154,6 +160,9 @@
           <artifactId>maven-surefire-plugin</artifactId>
           <version>${version.org.apache.maven.plugins.maven-surefire-plugin}</version>
           <configuration>
+            <!-- JaCoCo's agent comes through @{argLine}; mockk loads byte-buddy as an agent, and -Xshare:off keeps the JVM
+                 from warning that the appended boot classpath disables class data sharing. -->
+            <argLine>@{argLine} -XX:+EnableDynamicAgentLoading -Xshare:off</argLine>
             <reportsDirectory>${project.build.directory}/site/jacoco</reportsDirectory>
             <useModulePath>false</useModulePath>
           </configuration>
@@ -163,6 +172,7 @@
           <artifactId>maven-failsafe-plugin</artifactId>
           <version>${version.org.apache.maven.plugins.maven-surefire-plugin}</version>
           <configuration>
+            <argLine>@{argLine} -XX:+EnableDynamicAgentLoading -Xshare:off</argLine>
             <reportsDirectory>${project.build.directory}/site/jacoco</reportsDirectory>
             <useModulePath>false</useModulePath>
           </configuration>

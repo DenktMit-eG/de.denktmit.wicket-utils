@@ -1,7 +1,6 @@
 package de.denktmit.wicket.components.base
 
-import de.denktmit.wicket.components.addCssClass
-import de.denktmit.wicket.components.classNameAsCssClass
+import de.denktmit.wicket.components.widget.widgetHooks
 import org.apache.wicket.Component
 import org.apache.wicket.MarkupContainer
 import org.apache.wicket.markup.html.WebMarkupContainer
@@ -21,7 +20,7 @@ open class DmContainer(
 
   override fun onInitialize() {
     super.onInitialize()
-    addCssClass("dm-id-$id", "dm-${classNameAsCssClass()}")
+    widgetHooks()
     init()
   }
 

@@ -12,6 +12,8 @@ class PathVisitor<R : Component, String>(
     visit: IVisit<String>?,
   ) {
     if (`object`.id == idComponent) {
+      // the second type parameter is named like the type it always is; the cast keeps the published signature
+      @Suppress("UNCHECKED_CAST")
       visit?.stop(`object`.pageRelativePath as String)
     }
   }

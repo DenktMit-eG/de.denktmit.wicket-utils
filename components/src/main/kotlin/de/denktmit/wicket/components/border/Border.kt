@@ -17,6 +17,7 @@
 package de.denktmit.wicket.components.border
 
 import de.denktmit.wicket.components.addCssClass
+import de.denktmit.wicket.components.widget.widgetHooks
 import de.denktmit.wicket.components.classNameAsCssClass
 import org.apache.wicket.*
 import org.apache.wicket.behavior.Behavior
@@ -54,7 +55,8 @@ constructor(
   override fun onInitialize() {
     super.onInitialize()
 
-    addCssClass("dm-border", "dm-id-$id", "dm-cmp-${classNameAsCssClass()}")
+    addCssClass("dm-border", "dm-cmp-${classNameAsCssClass()}")
+    widgetHooks()
     addComponents()
     init()
   }

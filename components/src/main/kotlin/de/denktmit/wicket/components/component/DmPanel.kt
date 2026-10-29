@@ -1,6 +1,7 @@
 package de.denktmit.wicket.components.component
 
 import de.denktmit.wicket.components.addCssClass
+import de.denktmit.wicket.components.widget.widgetHooks
 import de.denktmit.wicket.components.classNameAsCssClass
 import org.apache.wicket.Component
 import org.apache.wicket.behavior.Behavior
@@ -24,7 +25,8 @@ abstract class DmPanel(
 
   override fun onInitialize() {
     super.onInitialize()
-    addCssClass("dm-panel", "dm-id-$id", "dm-cmp-${classNameAsCssClass()}")
+    addCssClass("dm-panel", "dm-cmp-${classNameAsCssClass()}")
+    widgetHooks()
     addComponents()
     init()
   }

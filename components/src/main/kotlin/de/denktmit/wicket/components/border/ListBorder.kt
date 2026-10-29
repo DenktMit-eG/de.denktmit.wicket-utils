@@ -305,6 +305,8 @@ constructor(
     }
 
     override fun newDequeueContext(): DequeueContext? {
+      // the enclosing border is this instance's parent of the same parameterisation; the cast only restores the erased types
+      @Suppress("UNCHECKED_CAST")
       val border = findParent(ListBorder::class.java) as ListBorder<T, L>
       val fragment = border.markup ?: return null
       return DequeueContext(fragment, this, true)

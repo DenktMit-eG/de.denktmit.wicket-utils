@@ -26,15 +26,10 @@ class ModelCoverageBranchesTest {
   @Test
   fun `map static function guards reified access`() {
     assertThatThrownBy {
+      val mapper: (Int) -> Int = { value -> value * 2 }
       Class.forName("de.denktmit.wicket.model.ModelUtilsKt")
-        .getDeclaredMethod("map", IModel::class.java, Function1::class.java)
-        .invoke(
-          null,
-          Model.of(21),
-          object : Function1<Int, Int> {
-            override fun invoke(value: Int): Int = value * 2
-          },
-        )
+        .declaredMethods.single { it.name == "map" && it.parameterCount == 2 }
+        .invoke(null, Model.of(21), mapper)
     }.hasRootCauseInstanceOf(UnsupportedOperationException::class.java)
   }
 
@@ -144,8 +139,8 @@ class ModelCoverageBranchesTest {
       model.detach()
 
       assertThat(model.getObject()).isEqualTo("value")
-      assertThat(model.get != null).isTrue()
-      assertThat(model.set != null).isTrue()
+      assertThat(model.get()).isEqualTo("value")
+      assertThat(model.set).isNotNull
       assertThat(model.valueType).isEqualTo(String::class.java)
     } finally {
       tester.destroy()

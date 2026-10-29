@@ -1,0 +1,5 @@
+.dm-loading-indicator { display: inline-flex; align-items: center; gap: var(--s-2); color: var(--color-accent); }
+.dm-loading-indicator .dm-loading-indicator-mark { width: 1.2em; height: 1.2em; animation: dm-spin 0.9s linear infinite; }
+.dm-loading-indicator-page { position: fixed; inset-block-start: var(--s-1); inset-inline-end: var(--s-1); z-index: 1000; padding: var(--s-2); background: var(--color-paper); border-radius: var(--radius); box-shadow: var(--shadow); }
+@keyframes dm-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .dm-loading-indicator .dm-loading-indicator-mark { animation: none; } }
