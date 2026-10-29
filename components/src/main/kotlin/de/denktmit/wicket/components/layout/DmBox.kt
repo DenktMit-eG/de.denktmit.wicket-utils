@@ -1,7 +1,6 @@
 package de.denktmit.wicket.components.layout
 
 import de.denktmit.wicket.components.addCssClass
-import de.denktmit.wicket.components.base.DmContainer
 import de.denktmit.wicket.components.resource.DmResources
 import org.apache.wicket.Component
 import org.apache.wicket.markup.ComponentTag
@@ -24,8 +23,7 @@ constructor(
   var justify: Justify = Justify.START,
   /** Whether the children wrap when the row runs out of space (rows only). */
   var wrap: Boolean = true,
-  init: DmContainer.() -> Unit = {},
-) : DmLayoutContainer(id, null, init) {
+) : DmLayoutContainer(id) {
 
   /** Lets [child] take the space the other children leave. */
   fun <C : Component> grow(child: C): C = child.also { it.addCssClass("dm-grow") }
@@ -47,11 +45,13 @@ constructor(
   align: Align = Align.CENTER,
   justify: Justify = Justify.START,
   wrap: Boolean = true,
-  init: DmContainer.() -> Unit = {},
-) : DmBox(id, space, align, justify, wrap, init) {
+  @Transient
+  private val setup: DmHBox.() -> Unit = {},
+) : DmBox(id, space, align, justify, wrap) {
   override fun onInitialize() {
     super.onInitialize()
     addCssClass("cluster")
+    setup()
   }
 }
 
@@ -63,10 +63,12 @@ constructor(
   space: Space = Space.S0,
   align: Align = Align.STRETCH,
   justify: Justify = Justify.START,
-  init: DmContainer.() -> Unit = {},
-) : DmBox(id, space, align, justify, false, init) {
+  @Transient
+  private val setup: DmVBox.() -> Unit = {},
+) : DmBox(id, space, align, justify, false) {
   override fun onInitialize() {
     super.onInitialize()
     addCssClass("stack")
+    setup()
   }
 }

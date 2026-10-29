@@ -1,7 +1,6 @@
 package de.denktmit.wicket.components.layout
 
 import de.denktmit.wicket.components.addCssClass
-import de.denktmit.wicket.components.base.DmContainer
 import de.denktmit.wicket.components.resource.DmResources
 import org.apache.wicket.Component
 import org.apache.wicket.markup.ComponentTag
@@ -27,11 +26,17 @@ constructor(
   var height: String = "20rem",
   /** The distance of an anchored child from its edge. */
   var inset: Space = Space.S0,
-  init: DmContainer.() -> Unit = {},
-) : DmLayoutContainer(id, null, init) {
+  @Transient
+  private val setup: DmAnchorLayout.() -> Unit = {},
+) : DmLayoutContainer(id) {
 
   /** Sticks [child] to [anchor]. */
   fun <C : Component> anchor(child: C, anchor: Anchor): C = child.also { it.addCssClass("dm-anchored", anchor.cssClass) }
+
+  override fun onInitialize() {
+    super.onInitialize()
+    setup()
+  }
 
   override fun styleSheet(): ResourceReference = DmResources.css("dm-anchor-layout")
 

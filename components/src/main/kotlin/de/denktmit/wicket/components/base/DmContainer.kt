@@ -3,6 +3,7 @@ package de.denktmit.wicket.components.base
 import de.denktmit.wicket.components.widget.widgetHooks
 import org.apache.wicket.Component
 import org.apache.wicket.MarkupContainer
+import org.apache.wicket.behavior.Behavior
 import org.apache.wicket.markup.html.WebMarkupContainer
 import org.apache.wicket.model.IModel
 
@@ -17,6 +18,16 @@ open class DmContainer(
   @Transient
   open val init: DmContainer.() -> Unit = {}
 ) : WebMarkupContainer(id, model) {
+
+  /** Adds a child to this container; as a member it wins over any enclosing scope's `+` inside the `init` lambda. */
+  operator fun Component.unaryPlus() {
+    this@DmContainer.add(this)
+  }
+
+  /** Adds a behaviour to this container. */
+  operator fun Behavior.unaryPlus() {
+    this@DmContainer.add(this)
+  }
 
   override fun onInitialize() {
     super.onInitialize()

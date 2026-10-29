@@ -1,7 +1,6 @@
 package de.denktmit.wicket.components.layout
 
 import de.denktmit.wicket.components.addCssClass
-import de.denktmit.wicket.components.base.DmContainer
 import de.denktmit.wicket.components.resource.DmResources
 import org.apache.wicket.Component
 import org.apache.wicket.markup.ComponentTag
@@ -20,8 +19,9 @@ constructor(
   var minColumn: String = "15rem",
   /** The gap between cells. */
   var space: Space = Space.S0,
-  init: DmContainer.() -> Unit = {},
-) : DmLayoutContainer(id, null, init) {
+  @Transient
+  private val setup: DmGrid.() -> Unit = {},
+) : DmLayoutContainer(id) {
 
   /** Lets [child] span [columns] columns (1 to 6). */
   fun <C : Component> span(child: C, columns: Int): C {
@@ -32,6 +32,7 @@ constructor(
   override fun onInitialize() {
     super.onInitialize()
     addCssClass("grid")
+    setup()
   }
 
   override fun styleSheet(): ResourceReference = DmResources.css("dm-grid")

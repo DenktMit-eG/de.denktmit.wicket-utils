@@ -1,7 +1,6 @@
 package de.denktmit.wicket.components.layout
 
 import de.denktmit.wicket.components.addCssClass
-import de.denktmit.wicket.components.base.DmContainer
 import de.denktmit.wicket.components.resource.DmResources
 import org.apache.wicket.markup.ComponentTag
 import org.apache.wicket.request.resource.ResourceReference
@@ -20,12 +19,14 @@ constructor(
   var minHeight: String = "100%",
   /** The widest the centred content may be, a CSS length. */
   var measure: String = "var(--measure)",
-  init: DmContainer.() -> Unit = {},
-) : DmLayoutContainer(id, null, init) {
+  @Transient
+  private val setup: DmCenter.() -> Unit = {},
+) : DmLayoutContainer(id) {
 
   override fun onInitialize() {
     super.onInitialize()
     addCssClass("center", "center-intrinsic")
+    setup()
   }
 
   override fun styleSheet(): ResourceReference = DmResources.css("dm-center")
@@ -42,7 +43,13 @@ open class DmFit
 @JvmOverloads
 constructor(
   id: String,
-  init: DmContainer.() -> Unit = {},
-) : DmLayoutContainer(id, null, init) {
+  @Transient
+  private val setup: DmFit.() -> Unit = {},
+) : DmLayoutContainer(id) {
+  override fun onInitialize() {
+    super.onInitialize()
+    setup()
+  }
+
   override fun styleSheet(): ResourceReference = DmResources.css("dm-center")
 }

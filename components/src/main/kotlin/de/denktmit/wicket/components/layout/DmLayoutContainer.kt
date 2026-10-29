@@ -17,8 +17,7 @@ abstract class DmLayoutContainer
 constructor(
   id: String,
   model: IModel<*>? = null,
-  init: DmContainer.() -> Unit = {},
-) : DmContainer(id, model, init) {
+) : DmContainer(id, model) {
 
   /** The container's own sheet; `null` when the base sheet's primitive is all it needs. */
   protected open fun styleSheet(): ResourceReference? = null
