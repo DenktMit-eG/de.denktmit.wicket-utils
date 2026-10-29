@@ -56,52 +56,70 @@ toolbox ships (72). Script is vanilla, no build step in the toolbox.
 Border, box, grid, split, centre, fit, anchor, separator, include, frame,
 toolbar, step bar, timeline are panels or borders over the Every Layout
 primitives (`sidebar`, `cluster`, `stack`, `grid`, `cover`, `imposter`,
-`frame`); split and border layouts get a resize handle by script with the
-sizes kept in the model (13 to 16, 23 to 30). Tab box wraps `TabbedPanel`
-and its Ajax variant with closable tabs, icons, badges and an accordion
-mode (17). Group box and card are borders with header, toolbar and footer
-slots (18, 19). Window wraps `ModalDialog` for the modal case and a floating
-panel for the embedded and overlapped cases, with drag and resize by
-script and a result model (20). Drawer and portal layout are new panels
-(21, 22); portal order travels through an Ajax behaviour into the model.
+`frame`); split and border layouts resize through the browser's own
+`resize` handle and, with script, a draggable divider; the sizes stay in
+the browser (13 to 16, 23 to 30). Tab box wraps `TabbedPanel` with
+closable tabs, icons, badges and an Ajax switch that falls back to the
+link; the accordion is a `details` list without script (17). Group box and
+card are borders with header, toolbar and footer slots (18, 19). Window,
+drawer and message box are the native `dialog` element with its open state
+rendered by the server, upgraded by script to `showModal` (backdrop, focus
+trap, Escape), draggable and resizable by script, with a result model
+(20, 21, 79). Portal layout is a panel whose order travels through an
+Ajax behaviour into the model, with move links as the no-script path
+(22).
 
 ### Navigation (D)
 
 Menu bar and popup menu are one model (`MenuItem` tree with action, icon,
-shortcut, checked, enabled) rendered as `nav` and `menu` elements with
-roles and keyboard handling by script (31, 32). Navigation bar and
-breadcrumb are panels over that model and Wicket's breadcrumb support
-(33, 34). Tree and tree table wrap `NestedTree` / `TableTree` with
-lazy children, tri-state checks and drag by HTML5 drag and drop (35).
-Pager wraps `PagingNavigator` for links and Ajax (36). The link family is
-the existing `Dm*Link` set completed by anchor navigation (37, 38).
+shortcut, checked, enabled) rendered as lists of links with the menu roles,
+sub-menus opening by CSS on hover and focus, arrow keys and shortcuts by
+script (31, 32). Navigation bar and breadcrumb are panels over page links;
+the breadcrumb does not use Wicket's `BreadCrumbBar`, which models a panel
+history where the catalogue's pages are bookmarkable (33, 34). Tree and
+tree table wrap `NestedTree` / `DefaultTableTree` with lazy children,
+tri-state checks and drag by HTML5 drag and drop (35, 62). Pager wraps
+`PagingNavigator` and `AjaxPagingNavigator` and adds page size and total
+count (36). The link family is the existing `Dm*Link` set completed by
+anchor navigation over the `:target` rule (37, 38).
 
 ### Inputs and forms (E)
 
 Text, number, date, choice, check, file upload and form widgets exist and
-are completed: spinner, long and double variants, date-time, month, year,
-week, time (39 to 41, 47, 51, 57). Combo wraps `AutoCompleteTextField`
-with a remote source and a minimum length (43). Band box, chosen box,
-cascader, switch, slider, range slider, rating, colour, input group,
-search box are new form components, each a `FormComponentPanel` whose
-no-script form is a native input (`select multiple`, `input type=range`,
-`input type=color`, radio group) and whose script adds the comfort (44 to
-50, 54, 55). Signature is a canvas with a hidden field carrying the image
-(52). Editor wraps a chosen editor library over a `textarea` fallback
-(53; Q1). Captcha offers the slot with a simple self-made challenge (56;
-Q2). Validation wraps Wicket's validators and `wicket-bean-validation`
-with messages from the toolbox's resource bundles, German and English
-(58).
+are completed: spinner, long and generic number fields, and the temporal
+fields over the browser's own `date`, `time`, `datetime-local`, `month`,
+`week` and number inputs with ISO on the wire whatever the locale, so the
+calendar popup and the user's format are the browser's (39 to 41, 47, 51,
+57). Combo wraps `AutoCompleteTextField` with a source, a minimum length
+and a delay (43). Band box, chosen box, cascader, switch, tri-state box,
+slider, range slider, rating, colour, input group, search box are
+`FormComponentPanel`s whose no-script form is a native input (`select
+multiple`, `input type=range`, `input type=color`, radio group, `details`
+popup) and whose script adds the comfort (44 to 50, 54, 55). Signature is
+a canvas with a hidden field carrying the image (52). Editor is the
+toolbox's own: a `textarea` with the HTML source as the no-script form, a
+tool bar and an editable area by script, and an allow-list sanitiser on the
+server for every submitted value (53; Q1, decided below). Captcha offers
+the slot with a simple self-made challenge whose answer lives in the
+session (56; Q2). Validation wraps Wicket's validators with their German
+and English messages; the toolbox's own rules carry messages next to the
+class, and form-level rules through a bundle an application installs once
+(`DmMessages.install`), with an English default when it is not (58).
 
 ### Collections (F)
 
-Table wraps `DataTable` with the toolbox's `TableColumn` model: sorting,
-paging, resizing, reordering, hiding, frozen columns by CSS, selection
-model, row detail, grouping, in-place editing, total row, empty message
+Table is a panel over `DataView` and `ISortableDataProvider` with its own
+markup, because `DataTable`'s fixed row markup leaves no room for detail
+and group rows: every row is a `tbody` holding the group header, the row
+and the detail. It has sorting, paging, column hiding through a menu,
+frozen columns by CSS, resizing and reordering by script in the browser
+(not persisted), a selection model, row detail, grouping, in-place editing
+through `AjaxEditableLabel`, a total row over the page, an empty message
 (59, 64, 65). List is the same over `DataView` with an item template (60).
-Large list is a `DataView` with a scroll-triggered Ajax page load (61).
-Tree table from D (62). The data source is `IDataProvider` (count, slice
-with sort), with an in-memory implementation for lists (63).
+Large list is a `DataView` whose "load more" link script clicks when it
+scrolls into view (61). Tree table from D (62). The data source is
+`ISortableDataProvider` (count, slice with sort), with an in-memory
+implementation for lists (63).
 
 ### Display (G)
 
@@ -111,14 +129,16 @@ video, empty state are small components over the matching element (66 to
 
 ### Overlays and feedback (H)
 
-Feedback panel exists (77). Notification is a panel the server adds to
-the Ajax response, placed by the base page, dismissed by time or click
-(78). Message box wraps `ModalDialog` with a result model (79). Popup and
-tooltip are behaviours that attach a panel or a text to any component,
-positioned by script, with the content rendered server-side (80, 81).
-Coach mark is a sequence of popups over a list of hooks (82). Loading
-indicator is a behaviour on the base page that shows during Ajax calls
-(83).
+Feedback panel exists and is dismissible by script (77). Notifications
+are a region the base page places; the server adds a message to the Ajax
+response, script removes it after its time or on its close (78). Message
+box is a window in modal mode with a result and the answer reported (79).
+Popup is a `details` element anchored to any widget by script (80);
+tooltip is a behaviour with the `title` attribute as its no-script form
+and a styled tooltip by script (81). Coach mark is a dialog stepping over
+a list of widgets, highlighted by script (82). Loading indicator is a
+component Wicket's own Ajax script shows while a request runs, one on the
+base page and any number per region (83).
 
 ### Behaviours (I)
 
@@ -189,8 +209,13 @@ catalogue is complete (Q4).
 
 ## Proposals
 
-- Editor library for 53: a maintained, framework-free editor with sanitised
-  HTML output (candidates in the plan), delivered as a webjar.
+- Editor for 53: built in the toolbox over the browser's `contenteditable`
+  with an allow-list sanitiser on the server, because the no-script form
+  (the `textarea` with the source) and the sanitiser are the same whatever
+  the editor, and a library binding can replace the script part later
+  without touching the model; decided alone on 2026-10-29 during the build.
+- Phase 6 bindings (97 to 99, 101) were not started in the first build;
+  the document viewer (100) is in the core, as decided.
 - Spreadsheet project for 101: candidates in the plan; the first binding
   is chosen when a product needs it.
 - Module cut: `components` keeps the core catalogue (C to I, K); embedded
@@ -201,8 +226,10 @@ catalogue is complete (Q4).
 
 ## Deferred
 
-- Organigram, fisheye, coach mark, signature (52, 75, 76, 82): built last
-  (Q3).
+- Map, chart, diagram and spreadsheet bindings (97 to 99, 101): modules of
+  their own with webjars, after the walk-through of the first build.
+- Split and border layout sizes reported to the model, table column widths
+  and order persisted: the browser keeps them for now (16, 13, 59).
 - Captcha beyond the simple self-made challenge (56): an application plugs
   in a stronger one.
 - Theming and a design system: out of scope of the requirements.

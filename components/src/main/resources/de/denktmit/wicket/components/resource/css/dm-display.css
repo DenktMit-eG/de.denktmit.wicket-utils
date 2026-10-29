@@ -20,3 +20,6 @@
 .dm-fisheye-link:hover, .dm-fisheye-link:focus-visible { transform: scale(1.6) translateY(-0.3em); }
 .dm-fisheye-link:hover .dm-fisheye-label, .dm-fisheye-link:focus-visible .dm-fisheye-label { opacity: 1; }
 .dm-fisheye-item:has(+ .dm-fisheye-item .dm-fisheye-link:hover) .dm-fisheye-link, .dm-fisheye-item .dm-fisheye-link:hover + * { transform: scale(1.25); }
+.dm-document { display: block; inline-size: 100%; border: var(--border-thin) solid var(--color-line); border-radius: var(--radius); background: var(--color-paper); }
+.dm-document-fallback { padding: var(--s0); color: var(--color-muted); }
+.dm-document-links { --space: var(--s0); margin-block-start: var(--s-2); }
