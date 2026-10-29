@@ -19,6 +19,8 @@
     <module>../_reports</module>
   </modules>
   <properties>
+    <!-- The pom-packaged modules have no sources to document; the code modules bind the javadoc jar to package. -->
+    <dokka.phase>none</dokka.phase>
     <java.version>21</java.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
@@ -268,7 +270,7 @@
               <goals>
                 <goal>javadocJar</goal>
               </goals>
-              <phase>package</phase>
+              <phase>${dokka.phase}</phase>
             </execution>
           </executions>
         </plugin>

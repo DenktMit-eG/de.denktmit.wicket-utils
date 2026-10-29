@@ -10,6 +10,9 @@
   <artifactId>dm-wicket-components</artifactId>
   <name>DenktMit :: Wicket :: Components</name>
   <description>Reusable Wicket UI components and utilities for DenktMit applications.</description>
+  <properties>
+    <dokka.phase>package</dokka.phase>
+  </properties>
   <dependencies>
     <dependency>
       <groupId>de.denktmit.wicket</groupId>
