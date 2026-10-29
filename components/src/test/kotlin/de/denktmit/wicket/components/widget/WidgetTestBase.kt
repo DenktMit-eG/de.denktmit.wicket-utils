@@ -6,6 +6,7 @@ import org.apache.wicket.Component
 import org.apache.wicket.Page
 import org.apache.wicket.Session
 import org.apache.wicket.MarkupContainer
+import org.apache.wicket.markup.IMarkupCacheKeyProvider
 import org.apache.wicket.markup.IMarkupResourceStreamProvider
 import org.apache.wicket.markup.html.WebPage
 import org.apache.wicket.protocol.http.WebApplication
@@ -54,13 +55,16 @@ abstract class WidgetTestBase {
   }
 
   /** A page that hosts one component in the markup the test gives it, so that head contributions render too. */
-  class HostPage(component: Component, private val body: String) : WebPage(), IMarkupResourceStreamProvider {
+  class HostPage(component: Component, private val body: String) : WebPage(), IMarkupResourceStreamProvider, IMarkupCacheKeyProvider {
     init {
       add(component)
     }
 
     override fun getMarkupResourceStream(container: MarkupContainer, containerClass: Class<*>): IResourceStream =
       StringResourceStream("<html xmlns:wicket=\"http://wicket.apache.org\"><head></head><body>$body</body></html>")
+
+    /** Every host page has its own markup, so Wicket must not cache it by class. */
+    override fun getCacheKey(container: MarkupContainer, containerClass: Class<*>): String? = null
   }
 
   /** Renders [component] inside a page whose body is [body] (default: a `div` with the component's id). */

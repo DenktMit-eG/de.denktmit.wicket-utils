@@ -1,0 +1,3 @@
+[data-dm-drag-key] { cursor: grab; }
+[data-dm-drag-key].dm-dragging { opacity: 0.5; }
+[data-dm-drop-group].dm-drop-over { outline: 2px dashed var(--color-accent); outline-offset: 2px; }

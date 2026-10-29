@@ -1,0 +1,7 @@
+.dm-popup { display: inline-block; position: relative; }
+.dm-popup-anchor { cursor: pointer; list-style: none; display: inline-flex; align-items: center; gap: var(--s-3); padding: var(--s-3) var(--s-2); border: var(--border-thin) solid var(--color-line); border-radius: var(--radius); background: var(--color-paper); }
+.dm-popup-anchor::-webkit-details-marker { display: none; }
+.dm-popup-panel { position: absolute; z-index: 40; inset-block-start: 100%; inset-inline-start: 0; min-inline-size: 14rem; margin-block-start: var(--s-3); box-shadow: var(--shadow); }
+.dm-popup[data-dm-popup-for] > .dm-popup-details > .dm-popup-anchor { display: none; }
+.dm-popup.dm-popup-floating { position: fixed; z-index: 45; }
+.dm-popup.dm-popup-floating .dm-popup-panel { position: static; margin: 0; }

@@ -1,0 +1,1 @@
+.dm-tooltip { position: fixed; z-index: 1000; max-inline-size: 20rem; padding: var(--s-3) var(--s-2); border-radius: var(--radius); background: var(--color-ink); color: var(--color-paper); font-size: var(--s-1); box-shadow: var(--shadow); pointer-events: none; }

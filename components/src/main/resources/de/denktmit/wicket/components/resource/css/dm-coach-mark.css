@@ -1,0 +1,8 @@
+.dm-coach-dialog { position: static; max-inline-size: 22rem; border: var(--border-thin) solid var(--color-accent); box-shadow: var(--shadow); }
+.dm-coach-mark[data-dm-enhanced] .dm-coach-dialog { position: fixed; z-index: 960; margin: 0; }
+.dm-coach-dialog header { justify-content: space-between; }
+.dm-coach-dialog footer { justify-content: flex-end; }
+.dm-coach-dialog footer a { padding: var(--s-3) var(--s-1); border-radius: var(--radius); text-decoration: none; }
+.dm-coach-dialog footer a:last-child { background: var(--color-accent); color: var(--color-accent-ink); }
+.dm-coach-close { line-height: 0; color: var(--color-muted); }
+.dm-coach-highlight { outline: 3px solid var(--color-focus); outline-offset: 4px; position: relative; z-index: 955; box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.35); border-radius: var(--radius); }

@@ -2,10 +2,8 @@
 <html xmlns:wicket="http://wicket.apache.org">
 <body>
 <wicket:panel>
-  <div wicket:id="feedbackul">
-    <div class="alert" role="alert" wicket:id="messages">
-      <div wicket:id="message">A message</div>
-    </div>
+  <div wicket:id="feedbackul" class="dm-feedback-list stack stack-tight">
+    <div class="alert" role="alert" wicket:id="messages"><span wicket:id="message" class="dm-feedback-text"></span><button type="button" class="dm-feedback-close" data-dm-feedback-close aria-label="Dismiss" hidden>×</button></div>
   </div>
 </wicket:panel>
 </body>

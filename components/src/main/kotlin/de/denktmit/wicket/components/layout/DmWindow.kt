@@ -27,7 +27,8 @@ enum class WindowMode { EMBEDDED, FLOATING, MODAL }
  * an Ajax link with a plain link as fallback, so the server always knows the state. A window returns a [result] to
  * its opener: [close] with a value sets it and calls [onClose].
  *
- * The content is any component with id [CONTENT]; footer actions join through [action].
+ * The content is any component with id [CONTENT]; footer actions join through [action] and are links (plain or
+ * Ajax with fallback), which is what a footer of a dialog holds.
  */
 open class DmWindow<R : Serializable>
 @JvmOverloads

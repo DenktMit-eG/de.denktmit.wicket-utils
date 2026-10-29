@@ -1,0 +1,8 @@
+.dm-feedback:empty { display: none; }
+.dm-feedback .alert { display: flex; align-items: center; gap: var(--s-2); padding: var(--s-2) var(--s0); border-radius: var(--radius); border: var(--border-thin) solid var(--color-line); border-inline-start-width: 4px; background: var(--color-paper); }
+.dm-feedback .alert-info { border-inline-start-color: var(--color-info); }
+.dm-feedback .alert-success { border-inline-start-color: var(--color-success); }
+.dm-feedback .alert-warning { border-inline-start-color: var(--color-warning); }
+.dm-feedback .alert-danger { border-inline-start-color: var(--color-danger); }
+.dm-feedback-text { flex-grow: 1; }
+.dm-feedback-close { border: 0; background: transparent; cursor: pointer; font-size: var(--s1); line-height: 1; color: var(--color-muted); padding: 0 var(--s-3); }
