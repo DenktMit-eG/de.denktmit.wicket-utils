@@ -1,0 +1,3 @@
+.dm-center.dm-center-vertical { display: flex; flex-direction: column; justify-content: center; align-items: center; min-block-size: var(--min-height, 100%); }
+.dm-fit { display: grid; inline-size: 100%; block-size: 100%; }
+.dm-fit > * { inline-size: 100%; block-size: 100%; max-inline-size: none; }

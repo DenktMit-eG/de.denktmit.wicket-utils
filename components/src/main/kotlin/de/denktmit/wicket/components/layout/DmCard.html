@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org">
+<body>
+<wicket:border>
+  <section wicket:id="shell" class="dm-card-shell box stack">
+    <header wicket:id="header" class="dm-card-header cluster">
+      <h3 wicket:id="title" class="dm-card-title"></h3>
+      <span class="dm-card-actions cluster" role="group"><span wicket:id="actions"></span></span>
+      <button wicket:id="maximize" type="button" class="dm-card-button" data-dm-card-maximize aria-label="Maximise" aria-pressed="false" hidden><span wicket:id="icon"></span></button>
+      <button wicket:id="close" type="button" class="dm-card-button" data-dm-card-close aria-label="Close" hidden><span wicket:id="icon"></span></button>
+    </header>
+    <div class="dm-card-body stack"><wicket:body/></div>
+    <footer wicket:id="footer" class="dm-card-footer"></footer>
+  </section>
+</wicket:border>
+</body>
+</html>

@@ -1,0 +1,2 @@
+.dm-frame { border: var(--border-thin) solid var(--color-line); border-radius: var(--radius); background: var(--color-paper); display: block; }
+.dm-include-page { inline-size: 100%; min-block-size: 20rem; border: var(--border-thin) solid var(--color-line); }

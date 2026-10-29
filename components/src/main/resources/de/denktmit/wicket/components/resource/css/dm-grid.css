@@ -1,0 +1,6 @@
+.dm-grid > .dm-span-2 { grid-column: span min(2, var(--columns, 2)); }
+.dm-grid > .dm-span-3 { grid-column: span 3; }
+.dm-grid > .dm-span-4 { grid-column: span 4; }
+.dm-grid > .dm-span-5 { grid-column: span 5; }
+.dm-grid > .dm-span-6 { grid-column: span 6; }
+@media (max-width: 40rem) { .dm-grid > [class*="dm-span-"] { grid-column: auto; } }

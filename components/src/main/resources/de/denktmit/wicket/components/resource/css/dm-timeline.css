@@ -1,0 +1,5 @@
+.dm-timeline-list { position: relative; padding-inline-start: var(--s2); border-inline-start: 2px solid var(--color-line); display: flex; flex-direction: column; gap: var(--s1); }
+.dm-timeline-event { position: relative; }
+.dm-timeline-event::before { content: ""; position: absolute; inset-inline-start: calc(-1 * var(--s2) - 7px); inset-block-start: 0.4em; inline-size: 12px; block-size: 12px; border-radius: 50%; background: var(--color-accent); }
+.dm-timeline-time { display: block; font-size: var(--s-1); color: var(--color-muted); }
+.dm-timeline-body { margin-block-start: var(--s-2); }

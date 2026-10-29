@@ -1,0 +1,4 @@
+.dm-group-box-shell { border: var(--border-thin) solid var(--color-line); border-radius: var(--radius); padding: var(--s0); background: var(--color-paper); margin: 0; min-inline-size: 0; }
+.dm-group-box-title { font-weight: 600; padding-inline: var(--s-2); cursor: default; }
+summary.dm-group-box-title { cursor: pointer; list-style-position: inside; }
+details.dm-group-box-shell[open] > .dm-group-box-title { margin-block-end: var(--s-1); }

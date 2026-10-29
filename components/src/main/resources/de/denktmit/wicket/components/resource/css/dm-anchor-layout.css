@@ -1,0 +1,11 @@
+.dm-anchor-layout { position: relative; block-size: var(--height, 20rem); }
+.dm-anchor-layout > .dm-anchored { position: absolute; }
+.dm-anchor-top-start { inset-block-start: var(--inset); inset-inline-start: var(--inset); }
+.dm-anchor-top { inset-block-start: var(--inset); inset-inline-start: 50%; transform: translateX(-50%); }
+.dm-anchor-top-end { inset-block-start: var(--inset); inset-inline-end: var(--inset); }
+.dm-anchor-start { inset-block-start: 50%; inset-inline-start: var(--inset); transform: translateY(-50%); }
+.dm-anchor-center { inset-block-start: 50%; inset-inline-start: 50%; transform: translate(-50%, -50%); }
+.dm-anchor-end { inset-block-start: 50%; inset-inline-end: var(--inset); transform: translateY(-50%); }
+.dm-anchor-bottom-start { inset-block-end: var(--inset); inset-inline-start: var(--inset); }
+.dm-anchor-bottom { inset-block-end: var(--inset); inset-inline-start: 50%; transform: translateX(-50%); }
+.dm-anchor-bottom-end { inset-block-end: var(--inset); inset-inline-end: var(--inset); }

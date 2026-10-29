@@ -1,0 +1,13 @@
+.dm-card-shell { padding: 0; --space: 0; }
+.dm-card-header { padding: var(--s-1) var(--s0); border-block-end: var(--border-thin) solid var(--color-line); --justify: space-between; justify-content: space-between; }
+summary.dm-card-header { cursor: pointer; list-style: none; }
+summary.dm-card-header::-webkit-details-marker { display: none; }
+summary.dm-card-header::before { content: "▸"; margin-inline-end: var(--s-2); transition: transform 0.15s; }
+details[open] > summary.dm-card-header::before { transform: rotate(90deg); }
+.dm-card-title { flex-grow: 1; }
+.dm-card-body { padding: var(--s0); }
+.dm-card-footer { padding: var(--s-1) var(--s0); border-block-start: var(--border-thin) solid var(--color-line); color: var(--color-muted); }
+.dm-card-button { background: none; border: 0; padding: var(--s-3); cursor: pointer; border-radius: var(--radius); line-height: 0; }
+.dm-card-button:hover { background: var(--color-ground); }
+.dm-card-maximized { position: fixed; inset: var(--s0); z-index: 900; overflow: auto; box-shadow: var(--shadow); }
+.dm-card-maximized .dm-card-shell { block-size: 100%; }

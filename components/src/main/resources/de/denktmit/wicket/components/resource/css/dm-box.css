@@ -1,0 +1,4 @@
+.dm-h-box { display: flex; flex-wrap: var(--wrap, wrap); gap: var(--space, var(--s0)); align-items: var(--align, center); justify-content: var(--justify, flex-start); }
+.dm-v-box { display: flex; flex-direction: column; gap: var(--space, var(--s0)); align-items: var(--align, stretch); justify-content: var(--justify, flex-start); }
+.dm-v-box > * + * { margin-block-start: 0; }
+.dm-h-box > .dm-grow, .dm-v-box > .dm-grow { flex-grow: 1; }

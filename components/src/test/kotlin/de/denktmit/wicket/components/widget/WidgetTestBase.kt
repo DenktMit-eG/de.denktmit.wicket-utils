@@ -68,8 +68,12 @@ abstract class WidgetTestBase {
   /** The last response's markup. */
   protected val html: String get() = tester.lastResponseAsString
 
-  /** The rendered tag of the component with [wicketId]. */
-  protected fun tag(wicketId: String): TagTester = tester.getTagByWicketId(wicketId) ?: error("no rendered tag with wicket:id '$wicketId'")
+  /** The rendered tag of the component with [wicketId]; the [index]th one when the id repeats (list items). */
+  protected fun tag(wicketId: String, index: Int = 0): TagTester =
+    tags(wicketId).getOrNull(index) ?: error("no rendered tag with wicket:id '$wicketId' at index $index")
+
+  /** Every rendered tag with [wicketId], in document order. */
+  protected fun tags(wicketId: String): List<TagTester> = TagTester.createTagsByAttribute(html, "wicket:id", wicketId, false)
 
   /** Asserts the two stable hooks on the rendered tag of [component]. */
   protected fun assertHooks(component: Component) {
